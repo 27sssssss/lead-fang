@@ -113,6 +113,65 @@
   transform: translateY(50%) rotate(-135deg);
 }
 
+.shake-top {
+	-webkit-animation: shake-top 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+	        animation: shake-top 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+}
+
+.group:hover .shake-text {
+  animation: shake-top 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+}
+
+.shake-button:hover {
+  animation: shake-top 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955) infinite;
+}
+
+@-webkit-keyframes shake-top {
+  0%,
+  100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+    -webkit-transform-origin: 50% 0;
+            transform-origin: 50% 0;
+  }
+  10% {
+    -webkit-transform: rotate(2deg);
+            transform: rotate(2deg);
+  }
+  20%,
+  40%,
+  60% {
+    -webkit-transform: rotate(-4deg);
+            transform: rotate(-4deg);
+  }
+  30%,
+  50%,
+  70% {
+    -webkit-transform: rotate(4deg);
+            transform: rotate(4deg);
+  }
+  80% {
+    -webkit-transform: rotate(-2deg);
+            transform: rotate(-2deg);
+  }
+  90% {
+    -webkit-transform: rotate(2deg);
+            transform: rotate(2deg);
+  }
+}
+
+
+@keyframes shake-top {
+  0%, 100% { transform: rotate(0deg); transform-origin: 50% 0; }
+  10% { transform: rotate(2deg); }
+  20%, 40%, 60% { transform: rotate(-4deg); }
+  30%, 50%, 70% { transform: rotate(4deg); }
+  80% { transform: rotate(-2deg); }
+  90% { transform: rotate(2deg); }
+}
+
+
+
 
 :root {
   --text: #6b6375;
@@ -169,7 +228,6 @@
 }
 
 #root {
-  width: 1126px;
   max-width: 100%;
   margin: 0 auto;
   text-align: center;

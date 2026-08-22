@@ -1,25 +1,19 @@
 import { useState } from 'react'
 import logo from '../assets/logos/logoopenmouth.svg'
+import BurgerMenu from './butttons/BurgerMenu'
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <header className="border-b border-[var(--border)] px-6 py-4 grid grid-cols-3 items-center">
-      <button
-        type="button"
-        aria-label="Open menu"
-        onClick={() => setIsOpen((prev) => !prev)}
+    <header className="border-b border-[var(--border)] px-6 py-4 grid grid-cols-3 items-center w-full">
+      <div className='max-w-10'
         onMouseEnter={() => setIsOpen(true)}
-        onMouseLeave={() => setIsOpen(false)}
-        className="justify-self-start flex flex-col gap-1 p-1 group "
-      >
-        <div id="nav-icon1" className={isOpen ? 'open' : ''}>
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </button>
+        onMouseLeave={() => setIsOpen(false)}>
+        <BurgerMenu isOpen={isOpen}>
+
+        </BurgerMenu>
+      </div>
 
       <div className='flex items-center justify-center gap-4'>
         <img
@@ -32,7 +26,7 @@ export default function Header() {
       
       <button
         type="button"
-        className="justify-self-end text-sm px-6 py-2  text-white hover:opacity-90 transition-opacity border rounded-2xl"
+        className="shake-button justify-self-end rounded-2xl border border-white/15 px-6 py-2 text-sm text-white"
       >
         Get started
       </button>
