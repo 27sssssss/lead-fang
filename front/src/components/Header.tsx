@@ -28,7 +28,7 @@ export default function Header() {
         type="button"
         className="shake-button justify-self-end rounded-2xl border border-white/15 px-6 py-2 text-sm text-white"
       >
-        Get started
+        Get started123
       </button>
     </header>
   )
