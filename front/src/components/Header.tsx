@@ -15,21 +15,36 @@ export default function Header() {
         </BurgerMenu>
       </div>
 
-      <div className='flex items-center justify-center gap-4'>
+      <div className='flex items-center justify-center'>
         <img
           src={logo}
           alt="Logo"
-          className="justify-self-center h-11 w-auto"
+          className="justify-self-center h-16 w-auto"
         />
-        <p className='text-2xl' style={{ fontFamily: '"DRUKCYR", sans-serif'}}>LEAD AND FANG</p>
+
       </div>
       
+
       <button
-        type="button"
-        className="shake-button justify-self-end rounded-2xl border border-white/15 px-6 py-2 text-sm text-white"
+        className=" justify-self-end rounded-[6px] px-6 py-2 text-sm text-[#F0EEE6]
+          relative isolate overflow-hidden
+          px-5 py-2.5
+          font-medium uppercase
+          bg-[#FFBF00]
+          border-[#FFBF00]
+          transition-colors duration-400
+          before:absolute before:inset-0 before:-z-10
+          before:origin-left before:scale-x-0
+          before:bg-[#F0EEE6]
+
+          before:transition-transform before:duration-300
+          before:content-['']
+          hover:text-[#FFBF00]
+          hover:before:scale-x-100
+        "
       >
-        Get started123
-      </button>
-    </header>
-  )
+          Contact us
+      </button>      
+      </header>
+        )
 }

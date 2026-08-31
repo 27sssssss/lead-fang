@@ -126,6 +126,10 @@
   animation: shake-top 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955) infinite;
 }
 
+.button-slide{
+  
+}
+
 @-webkit-keyframes shake-top {
   0%,
   100% {
@@ -251,16 +255,13 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-heading);
+  font-family: "DRUKCYR", sans-serif;
   font-weight: 700;
-  color: var(--text-h);
 }
 
 
 h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
+  font-size: 150px;
   @media (max-width: 1024px) {
     font-size: 36px;
     margin: 20px 0;
