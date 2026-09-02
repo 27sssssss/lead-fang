@@ -1,4 +1,4 @@
-import ReviewCard from "../Cards/ReviewCard"
+import ReviewCard from "../cards/ReviewCard"
 export default function CustomerReviews(){
     return (
         <div className="flex flex-col items-center">

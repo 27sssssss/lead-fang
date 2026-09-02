@@ -1,9 +1,10 @@
 import './App.css'
 import Header from './components/Header'
 import TypingText from './components/TypeWriter'
-import ClickSpark from './components/ClickSpark/ClickSparks'
-import TextLoop from './components/Flyer/Flyer'
-import CustomerReviews from './components/Blocks/CustomerReviews'
+import ClickSpark from './components/clickSparks/ClickSparks'
+import TextLoop from './components/flyer/Flyer'
+import CustomerReviews from './components/blocks/CustomerReviews'
+import PixelSwap from './components/pixelSwap/PixelSwap'
 
 function App() {
   return (
@@ -61,6 +62,8 @@ function App() {
             
           </CustomerReviews>
         </div>
+
+
       </main>
       </ClickSpark>
     </>
