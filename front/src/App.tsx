@@ -5,6 +5,8 @@ import ClickSpark from './components/clickSparks/ClickSparks'
 import TextLoop from './components/flyer/Flyer'
 import CustomerReviews from './components/blocks/CustomerReviews'
 import PixelSwap from './components/pixelSwap/PixelSwap'
+import ReviewCard from './components/cards/ReviewCard'
+import ReviewCardTest from './components/cards/ReviewCardTest'
 
 function App() {
   return (
@@ -61,6 +63,8 @@ function App() {
           <CustomerReviews>
             
           </CustomerReviews>
+
+          
         </div>
 
 
