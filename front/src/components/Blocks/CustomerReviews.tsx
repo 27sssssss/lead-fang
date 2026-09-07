@@ -1,5 +1,5 @@
 import ReviewCard from "../cards/ReviewCard"
-import reviews from "../../assets/reviews.json"
+import reviews from "../../assets/review_cards.json"
 import gsap from "gsap"
 import { Draggable } from "gsap/Draggable"
 import { InertiaPlugin } from "gsap/InertiaPlugin"
@@ -31,6 +31,8 @@ const CARD_OFFSETS: {x: number; y: number}[] = [
 export default function CustomerReviews(){
     const loopedReviews = [...reviews, ...reviews]
     const trackRef = useRef<HTMLDivElement>(null)
+    const cardRefs = useRef<(HTMLDivElement | null)[]>([])
+    const lastXRef = useRef(0)
 
     useEffect(() => {
         const track = trackRef.current
@@ -53,11 +55,20 @@ export default function CustomerReviews(){
         const [draggable] = Draggable.create(track, {
             type: "x",
             inertia: true,
-            onPress: () => tween.pause(),
-            onDrag: wrapDragPosition,
-            onThrowUpdate: wrapDragPosition,
-            onDragEnd: () => tween.resume(),
-            onThrowComplete: () => tween.resume(),
+            onPress: function (this: Draggable) {
+                tween.pause()
+                lastXRef.current = this.x
+            },
+            onDrag: applyDragEffects,
+            onThrowUpdate: applyDragEffects,
+            onDragEnd: () => {
+                tween.resume()
+                springTiltBack()
+            },
+            onThrowComplete: () => {
+                tween.resume()
+                springTiltBack()
+            },
         })
 
         // телепортирует ленту на loopWidth назад/вперёд, когда драг уходит за пределы одной копии контента
@@ -67,6 +78,24 @@ export default function CustomerReviews(){
                 gsap.set(track, { x: wrapped })
                 this.update()
             }
+        }
+
+        // один и тот же наклон применяется сразу ко всем карточкам, пропорционально скорости скролла
+        function applyDragEffects(this: Draggable) {
+            wrapDragPosition.call(this)
+
+            const deltaX = this.x - lastXRef.current
+            lastXRef.current = this.x
+
+            const tilt = gsap.utils.clamp(-15, 15, deltaX * 0.6)
+            const cards = cardRefs.current.filter((el): el is HTMLDivElement => el !== null)
+            gsap.to(cards, { rotate: tilt, duration: 0.2, ease: "power2.out", overwrite: "auto" })
+        }
+
+        // плавно возвращает наклон всех карточек в 0 с пружинным эффектом после отпускания
+        function springTiltBack() {
+            const cards = cardRefs.current.filter((el): el is HTMLDivElement => el !== null)
+            gsap.to(cards, { rotate: 0, duration: 0.6, ease: "elastic.out(1, 0.4)", overwrite: "auto" })
         }
 
         return () => {
@@ -85,8 +114,12 @@ export default function CustomerReviews(){
                     {loopedReviews.map((review, index) => {
                         const { y } = CARD_OFFSETS[index % CARD_OFFSETS.length]
                         return (
-                            <div key={`${review.name}-${index}`} style={{ transform: `translateY(${y}px)` }}>
-                                <ReviewCard name={review.name} company={review.company_position} text={review.review} />
+                            <div
+                                key={`${review.name}-${index}`}
+                                ref={el => { cardRefs.current[index] = el }}
+                                style={{ transform: `translateY(${y}px)` }}
+                            >
+                                <ReviewCard name={review.name} company={review.company_position} text={review.review} variant={review.variant}/>
                             </div>
                         )
                     })}
