@@ -1,6 +1,13 @@
-import { useMemo } from "react"
 import ReviewCard from "../cards/ReviewCard"
 import reviews from "../../assets/reviews.json"
+import gsap from "gsap"
+import { Draggable } from "gsap/Draggable"
+import { InertiaPlugin } from "gsap/InertiaPlugin"
+import { useEffect } from "react"
+import { useRef } from "react"
+
+gsap.registerPlugin(Draggable, InertiaPlugin)
+
 
 const CARD_OFFSETS: {x: number; y: number}[] = [
     { x: 0, y: -60 },
@@ -22,9 +29,51 @@ const CARD_OFFSETS: {x: number; y: number}[] = [
 
 
 export default function CustomerReviews(){
-    // duplicated so the track can loop seamlessly at -50%
     const loopedReviews = [...reviews, ...reviews]
+    const trackRef = useRef<HTMLDivElement>(null)
 
+    useEffect(() => {
+        const track = trackRef.current
+        if (!track) return
+
+        // ширина одного "прогона" ленты — половина, т.к. массив продублирован
+        const loopWidth = track.scrollWidth / 2
+
+        const tween = gsap.to(track, {
+            x: -loopWidth,
+            duration: 40,
+            ease: "none",
+            repeat: -1,
+            modifiers: {
+                // оборачиваем координату так, чтобы лента "телепортировалась" бесшовно
+                x: gsap.utils.unitize(x => parseFloat(x) % loopWidth)
+            }
+        })
+
+        const [draggable] = Draggable.create(track, {
+            type: "x",
+            inertia: true,
+            onPress: () => tween.pause(),
+            onDrag: wrapDragPosition,
+            onThrowUpdate: wrapDragPosition,
+            onDragEnd: () => tween.resume(),
+            onThrowComplete: () => tween.resume(),
+        })
+
+        // телепортирует ленту на loopWidth назад/вперёд, когда драг уходит за пределы одной копии контента
+        function wrapDragPosition(this: Draggable) {
+            const wrapped = gsap.utils.wrap(-loopWidth, 0, this.x)
+            if (wrapped !== this.x) {
+                gsap.set(track, { x: wrapped })
+                this.update()
+            }
+        }
+
+        return () => {
+            tween.kill()
+            draggable.kill()
+        }
+    }, [])
 
     return (
         <div className="flex flex-col items-center">
@@ -32,25 +81,17 @@ export default function CustomerReviews(){
                 CLIENT REVIEWS
             </h1>
             <div className="w-full overflow-x-hidden">
-                <div className="flex w-max items-center gap-24 py-32 animate-marquee hover:[animation-play-state:paused]">
+                <div ref={trackRef} className="flex w-max items-center gap-24 py-32 cursor-grab active:cursor-grabbing">
                     {loopedReviews.map((review, index) => {
-                        const { x, y } = CARD_OFFSETS[index % CARD_OFFSETS.length]
+                        const { y } = CARD_OFFSETS[index % CARD_OFFSETS.length]
                         return (
-                            <div
-                                key={`${review.name}-${index}`}
-                                style={{ transform: `translate(${x}px, ${y}px)` }}
-                            >
-                                <ReviewCard
-                                    name={review.name}
-                                    company={review.company_position}
-                                    text={review.review}
-                                />
+                            <div key={`${review.name}-${index}`} style={{ transform: `translateY(${y}px)` }}>
+                                <ReviewCard name={review.name} company={review.company_position} text={review.review} />
                             </div>
                         )
                     })}
                 </div>
             </div>
-
         </div>
     )
 }

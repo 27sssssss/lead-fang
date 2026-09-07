@@ -4,9 +4,7 @@ import TypingText from './components/TypeWriter'
 import ClickSpark from './components/clickSparks/ClickSparks'
 import TextLoop from './components/flyer/Flyer'
 import CustomerReviews from './components/blocks/CustomerReviews'
-import PixelSwap from './components/pixelSwap/PixelSwap'
-import ReviewCard from './components/cards/ReviewCard'
-import ReviewCardTest from './components/cards/ReviewCardTest'
+import MovableContainer from './components/cards/CardMoveContainer'
 
 function App() {
   return (
@@ -66,6 +64,7 @@ function App() {
 
           
         </div>
+        <MovableContainer></MovableContainer>
 
 
       </main>
