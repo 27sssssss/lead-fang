@@ -33,10 +33,10 @@ export default function BurgerMenu({isOpen}: BurgerMenuProps) {
             `}
           >
             <nav className="flex flex-col gap-2 text-sm text-white">
-              <a href="#" className="rounded-xl px-3 py-2 hover:bg-white/5">Home</a>
+              <a href="/" className="rounded-xl px-3 py-2 hover:bg-white/5">Home</a>
               <a href="#" className="rounded-xl px-3 py-2 hover:bg-white/5">About</a>
               <a href="#" className="rounded-xl px-3 py-2 hover:bg-white/5">Services</a>
-              <a href="#" className="rounded-xl px-3 py-2 hover:bg-white/5">Contact</a>
+              <a href="/contact" className="rounded-xl px-3 py-2 hover:bg-white/5">Contact</a>
             </nav>
           </div>
         </div>

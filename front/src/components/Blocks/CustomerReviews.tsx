@@ -1,21 +1,23 @@
 import ReviewCard from "../cards/ReviewCard"
 import reviews from "../../assets/review_cards.json"
+import CustomCursor from "../cursor/CustomCursor"
 import gsap from "gsap"
 import { Draggable } from "gsap/Draggable"
 import { InertiaPlugin } from "gsap/InertiaPlugin"
 import { useEffect } from "react"
 import { useRef } from "react"
+import { useState } from "react"
 
 gsap.registerPlugin(Draggable, InertiaPlugin)
 
 
 const CARD_OFFSETS: {x: number; y: number}[] = [
-    { x: 0, y: -60 },
-    { x: 20, y: 40 },
-    { x: -10, y: -100 },
-    { x: 30, y: 20 },
-    { x: -20, y: 80 },
-    { x: 10, y: -40 },
+    { x: 0, y: -80 },
+    { x: 20, y: 50 },
+    { x: -10, y: -120 },
+    { x: 30, y: 30 },
+    { x: -20, y: 40 },
+    { x: 10, y: -80 },
     { x: -30, y: 60 },
     { x: 0, y: -80 },
     { x: 25, y: 10 },
@@ -27,12 +29,19 @@ const CARD_OFFSETS: {x: number; y: number}[] = [
     { x: 20, y: -50 },
 ]
 
+// отрицательное значение — карточка накладывается на предыдущую, положительное — обычный зазор
+const CARD_MARGINS: number[] = [
+    0, -64, 32, 32, -64, 32, -64, 32, 32, -64, 32, -64, -64, 32, 32,
+]
+
 
 export default function CustomerReviews(){
     const loopedReviews = [...reviews, ...reviews]
     const trackRef = useRef<HTMLDivElement>(null)
+    const wrapperRef = useRef<HTMLDivElement>(null)
     const cardRefs = useRef<(HTMLDivElement | null)[]>([])
     const lastXRef = useRef(0)
+    const [isCardHovered, setIsCardHovered] = useState(false)
 
     useEffect(() => {
         const track = trackRef.current
@@ -55,6 +64,9 @@ export default function CustomerReviews(){
         const [draggable] = Draggable.create(track, {
             type: "x",
             inertia: true,
+            maxDuration: 1,
+            minDuration: 0.3,
+            overshootTolerance: 0,
             onPress: function (this: Draggable) {
                 tween.pause()
                 lastXRef.current = this.x
@@ -80,22 +92,39 @@ export default function CustomerReviews(){
             }
         }
 
-        // один и тот же наклон применяется сразу ко всем карточкам, пропорционально скорости скролла
+        // карточки со своим базовым наклоном из reviews.rotation, к которому добавляется общий drag-наклон
+        function getCardTargets() {
+            return cardRefs.current
+                .map((el, i) => ({ el, base: loopedReviews[i]?.rotation ?? 0 }))
+                .filter((card): card is { el: HTMLDivElement; base: number } => card.el !== null)
+        }
+
+        // один и тот же дополнительный наклон применяется сразу ко всем карточкам, пропорционально скорости скролла
         function applyDragEffects(this: Draggable) {
             wrapDragPosition.call(this)
 
             const deltaX = this.x - lastXRef.current
             lastXRef.current = this.x
 
-            const tilt = gsap.utils.clamp(-15, 15, deltaX * 0.6)
-            const cards = cardRefs.current.filter((el): el is HTMLDivElement => el !== null)
-            gsap.to(cards, { rotate: tilt, duration: 0.2, ease: "power2.out", overwrite: "auto" })
+            const tilt = gsap.utils.clamp(-6, 6, deltaX * 0.2)
+            const targets = getCardTargets()
+            gsap.to(targets.map(t => t.el), {
+                rotate: (i) => targets[i].base + tilt,
+                duration: 0.2,
+                ease: "power2.out",
+                overwrite: "auto"
+            })
         }
 
-        // плавно возвращает наклон всех карточек в 0 с пружинным эффектом после отпускания
+        // плавно возвращает наклон каждой карточки к её собственному базовому значению после отпускания
         function springTiltBack() {
-            const cards = cardRefs.current.filter((el): el is HTMLDivElement => el !== null)
-            gsap.to(cards, { rotate: 0, duration: 0.6, ease: "elastic.out(1, 0.4)", overwrite: "auto" })
+            const targets = getCardTargets()
+            gsap.to(targets.map(t => t.el), {
+                rotate: (i) => targets[i].base,
+                duration: 0.6,
+                ease: "elastic.out(1, 0.4)",
+                overwrite: "auto"
+            })
         }
 
         return () => {
@@ -106,20 +135,38 @@ export default function CustomerReviews(){
 
     return (
         <div className="flex flex-col items-center">
-            <h1 className="text-[#F0EEE6] text-9xl max-w-96">
-                CLIENT REVIEWS
-            </h1>
-            <div className="w-full overflow-x-hidden">
-                <div ref={trackRef} className="flex w-max items-center gap-24 py-32 cursor-grab active:cursor-grabbing">
+            <div className="relative flex flex-col justify-center max-w-228.75 w-full pb-10">
+                <p
+                className="text-[11rem] font-bold "
+                style={{ fontFamily: '"DRUKCYR", sans-serif', lineHeight: 0.9 }}
+                >
+                CUSTOMERS
+                </p>
+
+                <p
+                className="text-9xl stroke-text absolute top-[40%] left-[33%]"
+                style={{ fontFamily: '"AZKIA", sans-serif' }}
+                >
+                Confessions
+                </p>
+          </div>
+            <div ref={wrapperRef} className="relative w-full overflow-x-hidden overflow-y-hidden">
+                <CustomCursor containerRef={wrapperRef} isOpen={isCardHovered} />
+                <div ref={trackRef} className="flex w-max items-center py-32 cursor-grab active:cursor-grabbing">
                     {loopedReviews.map((review, index) => {
                         const { y } = CARD_OFFSETS[index % CARD_OFFSETS.length]
                         return (
                             <div
                                 key={`${review.name}-${index}`}
                                 ref={el => { cardRefs.current[index] = el }}
-                                style={{ transform: `translateY(${y}px)` }}
+                                onMouseEnter={() => setIsCardHovered(true)}
+                                onMouseLeave={() => setIsCardHovered(false)}
+                                style={{
+                                    transform: `translateY(${y}px) rotate(${review.rotation}deg)`,
+                                    marginLeft: index === 0 ? 0 : CARD_MARGINS[index % CARD_MARGINS.length],
+                                }}
                             >
-                                <ReviewCard name={review.name} company={review.company_position} text={review.review} variant={review.variant}/>
+                                <ReviewCard name={review.name} company={review.company_position} text={review.review} variant={review.variant} rotation={review.rotation}/>
                             </div>
                         )
                     })}

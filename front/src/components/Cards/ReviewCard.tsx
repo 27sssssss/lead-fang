@@ -6,15 +6,15 @@ interface ReviewCardFilling {
     company: string;
     text: string;
     variant: number;
+    rotation: number;
 }
 
 
 export default function ReviewCard({name, company, text, variant}: ReviewCardFilling){
     const [isHovered, setIsHovered] = useState(false)
-    console.log(variant)
 
     return(
-            <div className={`max-w-133 min-w-133 text-[#00211C] border rounded-3xl ${variant === 1 ? "bg-[#FFBF00] border-[#FFBF00]" : "bg-[#28BEA5] border-[#28BEA5]"}`}
+            <div className={`max-w-133 min-w-133 text-[#00211C] border-3 border-[#181716] rounded-3xl ${variant === 1 ? "bg-[#FFBF00] " : "bg-[#28BEA5]"}`}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
             >

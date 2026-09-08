@@ -26,7 +26,7 @@ export default function Header() {
       
 
       <button
-        className=" justify-self-end rounded-[6px] px-6 py-2 text-sm text-[#F0EEE6]
+        className=" justify-self-end rounded-[6px] px-6 py-2 text-sm text-[#F0EEE6] 
           relative isolate overflow-hidden
           px-5 py-2.5
           font-medium uppercase
