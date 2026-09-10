@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+
 @keyframes marquee {
   from {
     transform: translateX(0);
@@ -139,9 +140,14 @@
   animation: shake-top 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955) infinite;
 }
 
-.button-slide{
-  
+
+.svgbackground{
+  background: url('data:image/svg+xml,<svg width="1135" height="647" viewBox="0 0 1135 647" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 90.0598C0 62.9648 21.9648 41 49.0598 41H276.699C284.511 41 292.211 42.8658 299.156 46.442L422.311 109.851C429.257 113.428 436.956 115.293 444.769 115.293H1085.94C1113.04 115.293 1135 137.258 1135 164.353V597.212C1135 624.307 1113.04 646.272 1085.94 646.272H49.0598C21.9649 646.272 0 624.307 0 597.212V90.0598Z" fill="%231F1E1D"/><path d="M328.593 30.7508C332.226 13.7676 348.939 2.94565 365.923 6.5793L508.607 37.1074C513.504 38.1551 518.08 40.3572 521.954 43.5303L590.644 99.7915C594.518 102.965 599.094 105.167 603.991 106.214L1005.88 192.2C1022.86 195.834 1033.68 212.547 1030.05 229.53L972.001 500.848C968.367 517.831 951.654 528.653 934.671 525.019L284.751 385.966C267.768 382.332 256.946 365.619 260.58 348.635L328.593 30.7508Z" fill="%23262524"/></svg>');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
 }
+
 
 @-webkit-keyframes shake-top {
   0%,
@@ -248,7 +254,6 @@
   max-width: 100%;
   margin: 0 auto;
   text-align: center;
-  border-inline: 1px solid var(--border);
   min-height: 100svh;
   display: flex;
   flex-direction: column;
