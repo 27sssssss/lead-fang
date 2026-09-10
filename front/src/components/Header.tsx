@@ -6,7 +6,7 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <header className="border-b border-[var(--border)] px-6 py-4 grid grid-cols-3 items-center w-full">
+    <header className="px-6 py-4 grid grid-cols-3 items-center w-full">
       <div className='max-w-10'
         onMouseEnter={() => setIsOpen(true)}
         onMouseLeave={() => setIsOpen(false)}>
