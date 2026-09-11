@@ -28,11 +28,35 @@ export default function ContactPage() {
                 GET IN TOUCH
               </p>
             </div>
-            <div className="">
-              <div className="flex flex-row gap-4 px-11">
-                <div className="max-w-17 border-2">
-                    123     
+            <div className="flex w-full flex-col gap-4 h-full px-16 min-h-60">
+              <div className="flex w-full flex-row gap-4 justify-center">
+                <div className="w-full border-2">
+                    Your name   
                 </div>
+                <div className=" w-full border-2">
+                    Your email     
+                </div>
+                <div className=" w-full border-2">
+                    Company or website    
+                </div>
+              </div>
+              <div className="flex flex-row h-full gap-4">
+                  <div className="h-full w-[48.6%] border-2">
+                    message
+                  </div>
+                  <div className="w-full flex flex-col gap-4">
+                    <div className="w-full flex flex-row gap-4">
+                        <div className="w-full border-2">
+                            Your budget
+                        </div>
+                        <div className="w-full border-2">
+                            What do you need built
+                        </div>
+                    </div>
+                    <div className="w-full border-2">
+                        start my project
+                    </div>
+                  </div>
               </div>
             </div>
       </section>
