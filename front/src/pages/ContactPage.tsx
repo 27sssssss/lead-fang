@@ -8,6 +8,7 @@ const contactDetails = [
 ]
 
 
+
 export default function ContactPage() {
   return (
     <main className="contact-page mx-auto w-full max-w-6xl px-6 lg:px-10">
@@ -28,37 +29,65 @@ export default function ContactPage() {
                 GET IN TOUCH
               </p>
             </div>
-            <div className="flex w-full flex-col gap-4 h-full px-16 min-h-60">
-              <div className="flex w-full flex-row gap-4 justify-center">
-                <div className="w-full border-2">
-                    Your name   
-                </div>
-                <div className=" w-full border-2">
-                    Your email     
-                </div>
-                <div className=" w-full border-2">
-                    Company or website    
+            <form className="flex w-full flex-col gap-4 px-16 pb-11" onSubmit={(event) => event.preventDefault()}>
+              <div className="flex w-full flex-row justify-center gap-4">
+                <input
+                  name="name"
+                  type="text"
+                  placeholder="Your name"
+                  required
+                  className="w-full backdrop-blur-[3px] bg-transparent  min-h-17 rounded-[111px] border px-8 text-[13px] font-normal outline-none placeholder:text-current"
+                />
+                <input
+                  name="email"
+                  type="email"
+                  placeholder="Your email"
+                  required
+                  className="w-full backdrop-blur-[3px] bg-transparent  min-h-17 rounded-[111px] border px-8 text-[13px] font-normal outline-none placeholder:text-current"
+                />
+                <input
+                  name="company"
+                  type="text"
+                  placeholder="Company or website"
+                  className="w-full min-h-17 rounded-[111px] border backdrop-blur-[3px] bg-transparent px-8 text-[13px] font-normal outline-none placeholder:text-current"
+                />
+              </div>
+              <div className="flex gap-4">
+                <textarea
+                  name="message"
+                  placeholder="Message"
+                  required
+                  className="min-h-41 min-w-[344px] resize-none rounded-[30px] border backdrop-blur-[3px] bg-transparent p-8 text-[13px] font-normal outline-none placeholder:text-current"
+                />
+                <div className="flex w-full flex-col gap-4">
+                  <div className="flex w-full gap-4">
+                    <select
+                      name="budget"
+                      defaultValue=""
+                      className="w-full min-h-17 appearance-none rounded-[111px] border backdrop-blur-[3px] bg-transparent px-8 text-[13px] font-normal outline-none"
+                    >
+                      <option value="" disabled>What is your budget?</option>
+                      <option value="2k-5k">$2k - $5k</option>
+                      <option value="5k-10k">$5k - $10k</option>
+                      <option value="10k-25k">$10k - $25k</option>
+                      <option value="25k-plus">$25k+</option>
+                    </select>
+                    <input
+                      name="project"
+                      type="text"
+                      placeholder="What do you need built"
+                      className="w-full min-h-17 rounded-[111px] border backdrop-blur-[3px] bg-transparent px-8 text-[13px] font-normal outline-none placeholder:text-current"
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    className="h-full min-h-17 w-full flex items-center justify-center rounded-[111px] border backdrop-blur-[3px] bg-transparent px-8 text-left transition-colors hover:bg-white hover:text-black"
+                  >
+                    Start my project
+                  </button>
                 </div>
               </div>
-              <div className="flex flex-row h-full gap-4">
-                  <div className="h-full w-[48.6%] border-2">
-                    message
-                  </div>
-                  <div className="w-full flex flex-col gap-4">
-                    <div className="w-full flex flex-row gap-4">
-                        <div className="w-full border-2">
-                            Your budget
-                        </div>
-                        <div className="w-full border-2">
-                            What do you need built
-                        </div>
-                    </div>
-                    <div className="w-full border-2">
-                        start my project
-                    </div>
-                  </div>
-              </div>
-            </div>
+            </form>
       </section>
     </main>
   )

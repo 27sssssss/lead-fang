@@ -21,6 +21,8 @@ export interface TextLoopProps {
   ribbon?: boolean;
   ribbonColor?: string;
   ribbonWidth?: number;
+  ribbonBorderColor?: string;
+  ribbonBorderWidth?: number;
   pauseOnHover?: boolean;
   className?: string;
   style?: CSSProperties;
@@ -88,6 +90,8 @@ const TextLoop = ({
   ribbon = true,
   ribbonColor = '#5227FF',
   ribbonWidth = 86,
+  ribbonBorderColor = '#FFFFFF',
+  ribbonBorderWidth = 4,
   pauseOnHover = true,
   className = '',
   style = {}
@@ -206,6 +210,15 @@ const TextLoop = ({
         role="img"
         aria-label={text}
       >
+        <path
+          d={d}
+          fill="none"
+          stroke={ribbon ? ribbonBorderColor : 'none'}
+          strokeWidth={ribbon ? ribbonWidth + ribbonBorderWidth * 2 : 0}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+
         <path
           ref={pathRef}
           id={pathId}
