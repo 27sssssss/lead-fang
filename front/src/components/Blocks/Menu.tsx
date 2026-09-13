@@ -70,7 +70,6 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 
   const toggleBtnRef = useRef<HTMLButtonElement | null>(null);
   const busyRef = useRef(false);
-  const hoverCloseTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const itemEntranceTweenRef = useRef<gsap.core.Tween | null>(null);
 
@@ -363,30 +362,6 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
     }
   }, [playClose, animateIcon, animateColor, animateText, onMenuClose]);
 
-  const openMenuOnHover = useCallback(() => {
-    if (hoverCloseTimeoutRef.current) {
-      clearTimeout(hoverCloseTimeoutRef.current);
-      hoverCloseTimeoutRef.current = null;
-    }
-
-    if (!openRef.current) {
-      openRef.current = true;
-      setOpen(true);
-      onMenuOpen?.();
-      playOpen();
-      animateIcon(true);
-      animateColor(true);
-      animateText(true);
-    }
-  }, [playOpen, animateIcon, animateColor, animateText, onMenuOpen]);
-
-  const closeMenuOnHover = useCallback(() => {
-    hoverCloseTimeoutRef.current = setTimeout(() => {
-      closeMenu();
-      hoverCloseTimeoutRef.current = null;
-    }, 120);
-  }, [closeMenu]);
-
   React.useEffect(() => {
     if (!closeOnClickAway || !open) return;
 
@@ -453,8 +428,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
             aria-label={open ? 'Close menu' : 'Open menu'}
             aria-expanded={open}
             aria-controls="staggered-menu-panel"
-            onMouseEnter={openMenuOnHover}
-            onMouseLeave={closeMenuOnHover}
+            onClick={toggleMenu}
             type="button"
           >
             <span
@@ -512,8 +486,6 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
           className="staggered-menu-panel absolute top-0 right-0 h-full bg-white flex flex-col p-[6em_2em_2em_2em] overflow-y-auto z-10 backdrop-blur-[12px] pointer-events-auto"
           style={{ WebkitBackdropFilter: 'blur(12px)' }}
           aria-hidden={!open}
-          onMouseEnter={openMenuOnHover}
-          onMouseLeave={closeMenuOnHover}
         >
           <div className="sm-panel-inner flex-1 flex flex-col gap-5">
             <ul
