@@ -5,7 +5,7 @@ import CustomerReviews from '../components/blocks/CustomerReviews'
 export default function MainPage(){
     return(
         <main className='w-full flex flex-col'>
-          <section className="flex flex-col items-center justify-center gap-6 pt-10 pb-12 px-6 text-center max-w-300 w-full mx-auto">
+          <section className="flex flex-col items-center justify-center gap-6 pt-37 pb-12 px-6 text-center max-w-300 w-full mx-auto">
             <div className="relative flex justify-center max-w-228.75 w-full">
               <p
                 className="text-[178px] font-bold "
