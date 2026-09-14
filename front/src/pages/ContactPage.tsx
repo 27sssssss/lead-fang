@@ -11,7 +11,7 @@ const contactDetails = [
 
 export default function ContactPage() {
   return (
-    <main className="contact-page mx-auto w-full max-w-6xl px-6 lg:px-10">
+    <main className="contact-page mx-auto w-full max-w-6xl px-6 lg:px-10 pt-20">
       <section
         className="flex flex-col gap-27 items-center w-full svgbackground min-h-[646px] bg-no-repeat bg-center"
       >

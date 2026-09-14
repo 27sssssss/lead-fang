@@ -148,6 +148,35 @@
   background-size: 100% 100%;
 }
 
+.underanim {
+  position: relative;
+  color: #F0EEE6;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.underanim:hover {
+  color: #FFBF00;
+}
+
+.underanim::before {
+  color: #FFBF00;
+  content: "";
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #FFBF00;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.underanim:hover::before {
+  transform: scaleX(1);
+}
+
 
 @-webkit-keyframes shake-top {
   0%,
@@ -325,4 +354,59 @@ code {
   line-height: 135%;
   padding: 4px 8px;
   background: var(--code-bg);
+}
+
+::view-transition-old(root) {
+  animation: page-melt-out 0.7s cubic-bezier(0.76, 0, 0.24, 1) both;
+}
+
+::view-transition-new(root) {
+  animation: page-melt-in 0.7s cubic-bezier(0.76, 0, 0.24, 1) both;
+}
+
+@keyframes page-melt-out {
+  to {
+    clip-path: inset(0 0 100% 0 round 50%);
+    transform: scale(1.05);
+  }
+}
+
+@keyframes page-melt-in {
+  from {
+    clip-path: inset(100% 0 0 0 round 50%);
+    transform: scale(1.05);
+  }
+}
+
+@keyframes pencil-float {
+  0%,
+  100% {
+    transform: rotate(-8deg) translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: rotate(-4deg) translate3d(1px, -2px, 0);
+  }
+}
+
+@keyframes pencil-wiggle {
+  0% {
+    transform: rotate(-18deg) translateX(2px);
+  }
+
+  25% {
+    transform: rotate(-12deg) translateX(3px);
+  }
+
+  50% {
+    transform: rotate(-20deg) translateX(1px);
+  }
+
+  75% {
+    transform: rotate(-14deg) translateX(3px);
+  }
+
+  100% {
+    transform: rotate(-18deg) translateX(2px);
+  }
 }

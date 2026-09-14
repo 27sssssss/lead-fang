@@ -1,6 +1,13 @@
 import TypingText from '../components/TypeWriter'
 import TextLoop from '../components/flyer/Flyer'
 import CustomerReviews from '../components/blocks/CustomerReviews'
+import Footer from '../components/blocks/Footer'
+import case1 from '../assets/cases/case1.png'
+import case2 from '../assets/cases/case2.png'
+import case3 from '../assets/cases/case3.png'
+import case4 from '../assets/cases/case4.png'
+import case5 from '../assets/cases/case5.png'
+
 
 export default function MainPage(){
     return(
@@ -30,7 +37,7 @@ export default function MainPage(){
 
           </div>
           </section>
-          <div className='pt-14'>
+          <section className='pt-14'>
             <TextLoop
               text="PROJECTS"
               shape="wave"
@@ -48,12 +55,91 @@ export default function MainPage(){
               ribbonWidth={92}
               pauseOnHover={false}
             />
-          </div>
+          </section>
+
+          <section className='w-full px-[2.5vw] pt-50'>
+
+            <div className='flex flex-col gap-[1.8vw]'>
+              <p
+                className="text-[11rem] uppercase font-bold"
+                style={{ fontFamily: '"DRUKCYR", sans-serif'}}
+              >
+                our work
+              </p>
+              <div className='grid grid-cols-2 gap-[1.7vw] pt-30'>
+                <div className='flex h-full flex-col justify-between'>
+                  <div className='flex flex-col gap-[1vw]'>
+                    <img src={case1} className='w-full'></img>
+                      <div className='flex flex-col text-left uppercase font-normal'>
+                        <p className='text-[0.7vw]'>
+                          No fluff. Just brands with bite.
+                        </p>
+                        <p className='text-[1.05vw]'>
+                          No fluff. Just brands with bite.
+                        </p>
+                      </div>
+                  </div>
+                  <div className='grid grid-cols-2 gap-[1.6vw]'>
+                      <div className='flex flex-col gap-[1vw]'>
+                        <img src={case3} className='w-full'></img>
+                          <div className='flex flex-col text-left uppercase font-normal'>
+                            <p className='text-[0.7vw]'>
+                              No fluff. Just brands with bite.
+                            </p>
+                            <p className='text-[1.05vw]'>
+                              No fluff. Just brands with bite.
+                            </p>
+                          </div>
+                      </div>
+                  <div>
+                  <div className='flex flex-col gap-[1vw]'>
+                    <img src={case4} className='w-full'></img>
+                      <div className='flex flex-col text-left uppercase font-normal'>
+                        <p className='text-[0.7vw]'>
+                          No fluff. Just brands with bite.
+                        </p>
+                        <p className='text-[1.05vw]'>
+                          No fluff. Just brands with bite.
+                        </p>
+                      </div>
+                  </div>
+                    </div>
+                  </div>
+                </div>
+                  <div className='flex flex-col gap-[1vw]'>
+                    <img src={case2} className='w-full'></img>
+                      <div className='flex flex-col text-left uppercase font-normal'>
+                        <p className='text-[0.7vw]'>
+                          No fluff. Just brands with bite.
+                        </p>
+                        <p className='text-[1.05vw]'>
+                          No fluff. Just brands with bite.
+                        </p>
+                      </div>
+                  </div>
+              </div>
+              <div className=''>
+                <div className='flex flex-col gap-[1vw]'>
+                    <img src={case5} className='w-full'></img>
+                      <div className='flex flex-col text-left uppercase font-normal'>
+                        <p className='text-[0.7vw]'>
+                          No fluff. Just brands with bite.
+                        </p>
+                        <p className='text-[1.05vw]'>
+                          No fluff. Just brands with bite.
+                        </p>
+                      </div>
+                  </div>
+              </div>
+            </div>
+          </section>
+
           <section className='pt-40'>
             <CustomerReviews>
 
             </CustomerReviews>
           </section>
+          <Footer></Footer>
         </main>
     )
 }

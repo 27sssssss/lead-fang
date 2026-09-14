@@ -1,5 +1,6 @@
 import React, { useCallback, useLayoutEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
+import { useNavigate } from 'react-router-dom';
 
 export interface StaggeredMenuItem {
   label: string;
@@ -47,6 +48,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   onMenuOpen,
   onMenuClose
 }: StaggeredMenuProps) => {
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const openRef = useRef(false);
 
@@ -333,24 +335,6 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
     });
   }, []);
 
-  const toggleMenu = useCallback(() => {
-    const target = !openRef.current;
-    openRef.current = target;
-    setOpen(target);
-
-    if (target) {
-      onMenuOpen?.();
-      playOpen();
-    } else {
-      onMenuClose?.();
-      playClose();
-    }
-
-    animateIcon(target);
-    animateColor(target);
-    animateText(target);
-  }, [playOpen, playClose, animateIcon, animateColor, animateText, onMenuOpen, onMenuClose]);
-
   const closeMenu = useCallback(() => {
     if (openRef.current) {
       openRef.current = false;
@@ -362,6 +346,15 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
       animateText(false);
     }
   }, [playClose, animateIcon, animateColor, animateText, onMenuClose]);
+
+  const navigateWithTransition = useCallback((event: React.MouseEvent<HTMLAnchorElement>, link: string) => {
+    if (!link.startsWith('/')) return;
+
+    event.preventDefault();
+    const transition = document.startViewTransition?.(() => navigate(link));
+    if (!transition) navigate(link);
+    closeMenu();
+  }, [closeMenu, navigate]);
 
   const openMenuOnHover = useCallback(() => {
     if (hoverCloseTimeoutRef.current) {
@@ -500,7 +493,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 
           <a
             href="/contact"
-            className="relative flex items-center isolate justify-self-end pointer-events-auto max-w-31 max-h-9 overflow-hidden rounded-3xl border-2 border-[#181716] bg-[#FFBF00] px-5 py-2.5 text-[11px] font-medium text-[#2D2200] transition-colors duration-400 before:absolute before:inset-0 before:-z-10 before:origin-left before:scale-x-0 before:bg-[#F0EEE6] before:transition-transform before:duration-300 before:content-[''] hover:text-[#FFBF00] hover:before:scale-x-100"
+            className="relative flex items-center isolate justify-self-end pointer-events-auto max-w-31 max-h-9 overflow-hidden rounded-3xl border-2 border-[#F0EEE6] bg-transparent px-5 py-2.5 text-[11px] font-medium text-[#F0EEE6] transition-colors duration-400 before:absolute before:inset-0 before:-z-10 before:origin-left before:scale-x-0 before:bg-[#F0EEE6] before:transition-transform before:duration-300 before:content-[''] hover:text-[#181716] hover:before:scale-x-100"
           >
             Lets connect
           </a>
@@ -529,6 +522,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                       href={it.link}
                       aria-label={it.ariaLabel}
                       data-index={idx + 1}
+                      onClick={(event) => navigateWithTransition(event, it.link)}
                     >
                       <span className="sm-panel-itemLabel inline-block [transform-origin:50%_100%] will-change-transform">
                         {it.label}
@@ -575,7 +569,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 
       <style>{`
 .sm-scope .staggered-menu-wrapper { position: relative; width: 100%; height: 100%; z-index: 40; pointer-events: none; }
-.sm-scope .staggered-menu-header { position: absolute; top: 0; left: 0; width: 100%; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: center; padding: 2em; background: transparent; pointer-events: none; z-index: 20; }
+.sm-scope .staggered-menu-header { position: absolute; top: 0; left: 0; width: 100%; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: center; padding: 2.1vw; padding-right: 3.2vw; background: transparent; pointer-events: none; z-index: 20; }
 .sm-scope .staggered-menu-header > * { pointer-events: auto; }
 .sm-scope .sm-logo { display: flex; align-items: center; user-select: none; }
 .sm-scope .sm-logo-img { display: block; height: 64px; width: auto; object-fit: contain; }
