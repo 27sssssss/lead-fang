@@ -367,14 +367,14 @@ code {
 @keyframes page-melt-out {
   to {
     clip-path: inset(0 0 100% 0 round 50%);
-    transform: scale(1.05);
+    transform: scale(1.1);
   }
 }
 
 @keyframes page-melt-in {
   from {
     clip-path: inset(100% 0 0 0 round 50%);
-    transform: scale(1.05);
+    transform: scale(1.1);
   }
 }
 

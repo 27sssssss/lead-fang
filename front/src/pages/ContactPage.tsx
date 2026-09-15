@@ -1,4 +1,5 @@
 import small_folder from "../assets/small_folder.svg"
+import Footer from "../components/blocks/Footer"
 
 const contactDetails = [
   { label: 'Email', value: 'hello@leadandfang.com', href: 'mailto:hello@leadandfang.com' },
@@ -11,9 +12,9 @@ const contactDetails = [
 
 export default function ContactPage() {
   return (
-    <main className="contact-page mx-auto w-full max-w-6xl px-6 lg:px-10 pt-20">
+    <main className="contact-page w-full px-6 lg:px-10 pt-25">
       <section
-        className="flex flex-col gap-27 items-center w-full svgbackground min-h-[646px] bg-no-repeat bg-center"
+        className="flex flex-col gap-27 mx-auto items-center max-w-6xl w-full svgbackground min-h-[646px] bg-no-repeat bg-center"
       >
             <div className="flex flex-col gap-2 justify-center max-w-228.75 w-full pt-10 h-full">
               <p
@@ -57,7 +58,7 @@ export default function ContactPage() {
                   name="message"
                   placeholder="Message"
                   required
-                  className="min-h-41 min-w-[344px] resize-none rounded-[30px] border backdrop-blur-[3px] bg-transparent p-8 text-[13px] font-normal outline-none placeholder:text-current"
+                  className="min-h-41 min-w-[371px] resize-none rounded-[30px] border backdrop-blur-[3px] bg-transparent p-8 text-[13px] font-normal outline-none placeholder:text-current"
                 />
                 <div className="flex w-full flex-col gap-4">
                   <div className="flex w-full gap-4">
@@ -89,6 +90,9 @@ export default function ContactPage() {
               </div>
             </form>
       </section>
+      <Footer>
+
+      </Footer>
     </main>
   )
 }

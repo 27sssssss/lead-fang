@@ -4,7 +4,7 @@ import vectorCircle from '../../assets/leadshadow.svg'
 export default function Footer (){
     return(
         <footer>
-            <section className="pt-50 w-full px-10">
+            <section className="pt-20 w-full px-10">
                 <div className="flex flex-col">
                     <div className="relative z-2 grid grid-cols-5 items-center -mb-10">
                         <a href='https://twitter.com' className='flex justify-start'><div className='w-min underanim'>leadndfang@gmail.com</div></a>
