@@ -14,7 +14,7 @@ export default function ReviewCard({name, company, text, variant}: ReviewCardFil
     const [isHovered, setIsHovered] = useState(false)
 
     return(
-            <div className={`max-w-133 min-w-133 text-[#00211C] border-3 border-[#181716] rounded-3xl ${variant === 1 ? "bg-[#FFBF00] " : "bg-[#28BEA5]"}`}
+            <div className={`max-w-133 min-w-133 text-[#00211C] border-3 border-[#181716] rounded-3xl ${variant === 1 ? "bg-[#FFBF00] " : "bg-[#F0EEE6]"}`}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
             >

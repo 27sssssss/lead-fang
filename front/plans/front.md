@@ -1,0 +1,1 @@
+1. header button need changes: page transition doesnt work well, animation stops, but should end while transition is in process. 

@@ -10,15 +10,6 @@ import case3 from '../assets/cases/case3.png'
 import case4 from '../assets/cases/case4.png'
 import case5 from '../assets/cases/case5.png'
 
-const navigate = useNavigate()
-
-const navigateWithTransition = useCallback((event: React.MouseEvent<HTMLAnchorElement>, link: string) => {
-    if (!link.startsWith('/')) return;
-
-    event.preventDefault();
-    const transition = document.startViewTransition?.(() => navigate(link));
-    if (!transition) navigate(link);
-  }, [navigate]);
 
 
 export default function MainPage(){
@@ -51,7 +42,7 @@ export default function MainPage(){
           </section>
           <section className='pt-14'>
             <TextLoop
-              text="PROJECTS"
+              text="Branding · Advertising · Prints · Digital"
               shape="wave"
               speed={90}
               direction="forward"

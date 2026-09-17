@@ -1,6 +1,6 @@
 import ReviewCard from "../cards/ReviewCard"
 import reviews from "../../assets/review_cards.json"
-import CustomCursor from "../cursor/CustomCursor"
+import CustomCursor from "../cursor/CustomCursor_Eye"
 import gsap from "gsap"
 import { Draggable } from "gsap/Draggable"
 import { InertiaPlugin } from "gsap/InertiaPlugin"

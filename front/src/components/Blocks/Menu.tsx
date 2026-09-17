@@ -484,7 +484,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
             <img
               src={logoUrl || '/src/assets/logos/reactbits-gh-white.svg'}
               alt="Logo"
-              className="sm-logo-img block h-16 w-auto object-contain"
+              className="sm-logo-img block w-auto object-contain"
               draggable={false}
               width={110}
               height={110}
@@ -493,11 +493,12 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 
           <a
             href="/contact"
-            className="relative flex items-center isolate justify-self-end pointer-events-auto max-w-31 max-h-9 overflow-hidden rounded-3xl border-2 border-[#F0EEE6] bg-transparent px-5 py-2.5 text-[11px] font-medium text-[#F0EEE6] transition-colors duration-400 before:absolute before:inset-0 before:-z-10 before:origin-left before:scale-x-0 before:bg-[#F0EEE6] before:transition-transform before:duration-300 before:content-[''] hover:text-[#181716] hover:before:scale-x-100"
+            className="relative flex items-center isolate justify-self-end pointer-events-auto max-w-31 max-h-9 overflow-hidden rounded-3xl border-2 border-[#F0EEE6] bg-transparent px-5 py-2.5 text-[11px] font-medium text-[#F0EEE6] transition-colors duration-400 before:absolute before:inset-0 before:-z-10 before:origin-left before:scale-x-0 before:bg-[#F0EEE6] before:transition-transform before:duration-400 before:content-[''] hover:text-[#181716] hover:before:scale-x-100"
             onClick={(event) => navigateWithTransition(event, '/contact')}
           >
             Lets connect
           </a>
+          
         </header>
 
         <aside
@@ -573,7 +574,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 .sm-scope .staggered-menu-header { position: absolute; top: 0; left: 0; width: 100%; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: center; padding: 2.1vw; padding-right: 3.2vw; background: transparent; pointer-events: none; z-index: 20; }
 .sm-scope .staggered-menu-header > * { pointer-events: auto; }
 .sm-scope .sm-logo { display: flex; align-items: center; user-select: none; }
-.sm-scope .sm-logo-img { display: block; height: 64px; width: auto; object-fit: contain; }
+.sm-scope .sm-logo-img { display: block; height: 80px; width: auto; object-fit: contain; }
 .sm-scope .sm-toggle { position: relative; display: inline-flex; align-items: center; gap: 0.3rem; background: transparent; border: none; cursor: pointer; color: #e9e9ef; font-weight: 500; line-height: 1; overflow: visible; }
 .sm-scope .sm-toggle:focus-visible { outline: 2px solid #ffffffaa; outline-offset: 4px; border-radius: 4px; }
 .sm-scope .sm-line:last-of-type { margin-top: 6px; }
