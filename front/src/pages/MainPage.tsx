@@ -15,17 +15,17 @@ import case5 from '../assets/cases/case5.png'
 export default function MainPage(){
     return(
         <main className='w-full flex flex-col'>
-          <section className="flex flex-col items-center justify-center gap-6 pt-37 pb-12 px-6 text-center max-w-300 w-full mx-auto">
-            <div className="relative flex justify-center max-w-228.75 w-full">
+          <section className="flex flex-col items-center justify-center gap-6 pt-37 pb-12 px-6 text-center w-full mx-auto">
+            <div className="relative flex justify-center px-[13%] w-full">
               <p
-                className="text-[178px] font-bold "
+                className="text-[11.5vw] font-bold "
                 style={{ fontFamily: '"DRUKCYR", sans-serif', lineHeight: 0.9 }}
               >
                 YOUR BRAND HAS SOMETHING TO SAY
               </p>
 
               <p
-                className="absolute top-[104%] -translate-y-1/2 left-[17%] text-9xl stroke-text"
+                className="absolute top-[98%] -translate-y-1/2 left-[29.8%] text-[8.5vw] stroke-text"
                 style={{ fontFamily: '"AZKIA", sans-serif' }}
               >
                 We give it teeth
