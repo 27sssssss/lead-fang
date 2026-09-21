@@ -333,7 +333,7 @@ p {
 
 .stroke-text {
   color: #FFBF00;
-  -webkit-text-stroke: 0.93vw #181716;
+  -webkit-text-stroke: 0.98vw #181716;
   paint-order: stroke fill;
 }
 
