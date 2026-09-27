@@ -9,6 +9,8 @@ import case2 from '../assets/cases/case2.png'
 import case3 from '../assets/cases/case3.png'
 import case4 from '../assets/cases/case4.png'
 import case5 from '../assets/cases/case5.png'
+import LottieAnimation from '../components/Lottietry'
+import LotOfTextBlock from '../components/Blocks/LotOfText'
 
 //clamp(10px, 1vw, 140px)
 
@@ -42,6 +44,10 @@ export default function MainPage(){
 
           </div>
           </section>
+
+            <section className='pt-20'>
+              <LotOfTextBlock></LotOfTextBlock>
+            </section>
 
           <section className='w-full px-[2.5vw] pt-50'>
 
@@ -121,6 +127,7 @@ export default function MainPage(){
           </section>
 
           <section className='pt-40'>
+
             <CustomerReviews>
 
             </CustomerReviews>

@@ -1,7 +1,7 @@
 import React, { useCallback, useLayoutEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { useNavigate } from 'react-router-dom';
-
+import LottieAnimation from '../Lottietry';
 export interface StaggeredMenuItem {
   label: string;
   ariaLabel: string;
@@ -481,14 +481,9 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
           </button>
 
           <div className="sm-logo col-start-2 flex items-center justify-self-center select-none pointer-events-auto" aria-label="Logo">
-            <img
-              src={logoUrl || '/src/assets/logos/reactbits-gh-white.svg'}
-              alt="Logo"
-              className="sm-logo-img block w-auto object-contain"
-              draggable={false}
-              width={110}
-              height={110}
-            />
+            <div className='relative sm-logo-img block w-auto object-contain'>
+              <LottieAnimation></LottieAnimation>
+            </div>
           </div>
 
           <a
