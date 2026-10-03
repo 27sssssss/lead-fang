@@ -4,13 +4,11 @@ import TypingText from '../components/TypeWriter'
 import TextLoop from '../components/flyer/Flyer'
 import CustomerReviews from '../components/blocks/CustomerReviews'
 import Footer from '../components/blocks/Footer'
-import case1 from '../assets/cases/case1.png'
-import case2 from '../assets/cases/case2.png'
-import case3 from '../assets/cases/case3.png'
-import case4 from '../assets/cases/case4.png'
-import case5 from '../assets/cases/case5.png'
-import LottieAnimation from '../components/Lottietry'
+import QasAccordion from '../components/Blocks/Accordeon'
 import LotOfTextBlock from '../components/Blocks/LotOfText'
+import ServicesBlock from '../components/Blocks/Services'
+import TheyMust from '../components/Blocks/TheyMust'
+import Showcase from '../components/Blocks/Showcase'
 
 //clamp(10px, 1vw, 140px)
 
@@ -48,83 +46,16 @@ export default function MainPage(){
             <section className='pt-20'>
               <LotOfTextBlock></LotOfTextBlock>
             </section>
+              <TheyMust></TheyMust>
 
-          <section className='w-full px-[2.5vw] pt-50'>
-
-            <div className='flex flex-col gap-[1.8vw]'>
-              <p
-                className="text-[11rem] uppercase font-bold"
-                style={{ fontFamily: '"DRUKCYR", sans-serif'}}
-              >
-                our work
-              </p>
-              <div className='grid grid-cols-2 gap-[1.7vw] pt-30'>
-                <div className='flex h-full flex-col justify-between'>
-                  <div className='flex flex-col gap-[1vw]'>
-                    <img src={case1} className='w-full'></img>
-                      <div className='flex flex-col text-left uppercase font-normal'>
-                        <p className='text-[0.7vw]'>
-                          No fluff. Just brands with bite.
-                        </p>
-                        <p className='text-[1.05vw]'>
-                          No fluff. Just brands with bite.
-                        </p>
-                      </div>
-                  </div>
-                  <div className='grid grid-cols-2 gap-[1.6vw]'>
-                      <div className='flex flex-col gap-[1vw]'>
-                        <img src={case3} className='w-full'></img>
-                          <div className='flex flex-col text-left uppercase font-normal'>
-                            <p className='text-[0.7vw]'>
-                              No fluff. Just brands with bite.
-                            </p>
-                            <p className='text-[1.05vw]'>
-                              No fluff. Just brands with bite.
-                            </p>
-                          </div>
-                      </div>
-                  <div>
-                  <div className='flex flex-col gap-[1vw]'>
-                    <img src={case4} className='w-full'></img>
-                      <div className='flex flex-col text-left uppercase font-normal'>
-                        <p className='text-[0.7vw]'>
-                          No fluff. Just brands with bite.
-                        </p>
-                        <p className='text-[1.05vw]'>
-                          No fluff. Just brands with bite.
-                        </p>
-                      </div>
-                  </div>
-                    </div>
-                  </div>
-                </div>
-                  <div className='flex flex-col gap-[1vw]'>
-                    <img src={case2} className='w-full'></img>
-                      <div className='flex flex-col text-left uppercase font-normal'>
-                        <p className='text-[0.7vw]'>
-                          No fluff. Just brands with bite.
-                        </p>
-                        <p className='text-[1.05vw]'>
-                          No fluff. Just brands with bite.
-                        </p>
-                      </div>
-                  </div>
-              </div>
-              <div className=''>
-                <div className='flex flex-col gap-[1vw]'>
-                    <img src={case5} className='w-full'></img>
-                      <div className='flex flex-col text-left uppercase font-normal'>
-                        <p className='text-[0.7vw]'>
-                          No fluff. Just brands with bite.
-                        </p>
-                        <p className='text-[1.05vw]'>
-                          No fluff. Just brands with bite.
-                        </p>
-                      </div>
-                  </div>
-              </div>
+            <div className='px-5'>
+              <ServicesBlock></ServicesBlock>
             </div>
-          </section>
+            
+            <Showcase>
+            </Showcase>
+            
+            <QasAccordion></QasAccordion>
 
           <section className='pt-40'>
 

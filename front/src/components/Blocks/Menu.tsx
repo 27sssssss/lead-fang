@@ -481,7 +481,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
           </button>
 
           <div className="sm-logo col-start-2 flex items-center justify-self-center select-none pointer-events-auto" aria-label="Logo">
-            <div className='relative sm-logo-img block w-auto object-contain'>
+            <div className='sm-logo-img block w-auto object-contain'>
               <LottieAnimation></LottieAnimation>
             </div>
           </div>

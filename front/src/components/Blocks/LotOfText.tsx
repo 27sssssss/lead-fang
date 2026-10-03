@@ -2,7 +2,7 @@ import LottieAnimation from "../Lottietry";
 
 export default function LotOfTextBlock () {
     return(
-        <section className="bg-[#F0EEE6] px-[2.5vw] pt-[5.5vw] pb-[1.5vw] text-[#181716] rounded-b-[4.5vw] flex flex-col gap-[5vw]" >
+        <section className="bg-[#F0EEE6] px-[2.5vw] pt-[5.5vw] pb-[2.5vw] text-[#181716] rounded-b-[4.5vw] flex flex-col gap-[5vw]" >
             <p className="text-[9.8vw] text-left uppercase" style={{ fontFamily: '"DRUKCYR", sans-serif', lineHeight: 0.91}}>
                 We create visual identities that sink their teeth into memory.
             </p>
@@ -28,7 +28,6 @@ export default function LotOfTextBlock () {
                     From a single touchpoint to an entire brand system.
                 </p>
             </div>
-            <LottieAnimation></LottieAnimation>
         </section>
     )
 }
