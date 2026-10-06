@@ -64,11 +64,12 @@ export default function QasAccordion () {
                         const answerId = `manifesto-answer-${index}`
 
                         return (
-                            <div className='outline-blocknew p-5'>
+                            <div className='outline-blocknew p-5 flex py-10 flex-row items-start'>
+                                <p>q{index}</p>
                                 <li key={faq.question} className="">
                                     <button
                                         type="button"
-                                        className="flex w-full items-center justify-between gap-5 py-5 text-left text-[clamp(1rem,1.5vw,1.5rem)] uppercase"
+                                        className="flex w-full items-center justify-between gap-5  text-left text-[clamp(1rem,1.5vw,1.5rem)] uppercase"
                                         aria-expanded={isOpen}
                                         aria-controls={answerId}
                                         onClick={() => setSelected(isOpen ? null : index)}
