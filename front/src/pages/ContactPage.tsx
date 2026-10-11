@@ -1,5 +1,5 @@
-import CustomerReviews from "../components/blocks/CustomerReviews"
-import Footer from "../components/blocks/Footer"
+import CustomerReviews from "../components/Blocks/CustomerReviews"
+import Footer from "../components/Blocks/Footer"
 import CustomCursor from "../components/cursor/CustomCursor_Pencil"
 import { useRef } from "react"
 
