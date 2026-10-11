@@ -1,5 +1,3 @@
-import LottieAnimation from "../Lottietry";
-
 export default function LotOfTextBlock () {
     return(
         <section className="bg-[#F0EEE6] px-[2.5vw] pt-[5.5vw] pb-[2.5vw] text-[#181716] rounded-b-[4.5vw] flex flex-col gap-[5vw]" >

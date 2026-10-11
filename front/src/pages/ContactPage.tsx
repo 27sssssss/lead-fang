@@ -1,17 +1,7 @@
-import small_folder from "../assets/small_folder.svg"
 import CustomerReviews from "../components/blocks/CustomerReviews"
 import Footer from "../components/blocks/Footer"
 import CustomCursor from "../components/cursor/CustomCursor_Pencil"
 import { useRef } from "react"
-
-const contactDetails = [
-  { label: 'Email', value: 'hello@leadandfang.com', href: 'mailto:hello@leadandfang.com' },
-  { label: 'Phone', value: '+1 (415) 555-0189', href: 'tel:+14155550189' },
-  { label: 'Instagram', value: '@leadandfang', href: 'https://instagram.com' },
-  { label: 'Location', value: 'San Francisco, CA', href: '#' },
-]
-
-
 
 export default function ContactPage() {
   const formRef  = useRef<HTMLDivElement>(null)

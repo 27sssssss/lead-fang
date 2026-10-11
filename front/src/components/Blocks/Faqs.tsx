@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const faqs = [
+const defaultFaqs = [
     {
         question: 'We start with understanding',
         answers: [
@@ -47,7 +47,7 @@ interface FAQ {
     answers: string[];
 }
 
-export default function faqAccordion ({faqs} : {faqs: FAQ[]}) {
+export default function faqAccordion ({faqs = defaultFaqs} : {faqs?: FAQ[]}) {
     const [selected, setSelected] = useState<number | null>(null);
     return(
         <ul>
@@ -66,12 +66,22 @@ interface AccordionItemProps{
 }
 
 const AccordionItem = ({faq, selected, setSelected, index}: AccordionItemProps) => {
+    const isOpen = selected === index
+
     return(
         <li>
-            <button className="">{faq.question}</button>
-            <div className="">
-
-            </div>
+            <button
+                type="button"
+                aria-expanded={isOpen}
+                onClick={() => setSelected(isOpen ? null : index)}
+            >
+                {faq.question}
+            </button>
+            {isOpen && (
+                <div>
+                    {faq.answers.map((answer) => <p key={answer}>{answer}</p>)}
+                </div>
+            )}
         </li>
     );
 }
