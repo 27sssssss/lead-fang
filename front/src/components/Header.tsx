@@ -1,6 +1,5 @@
 // Header.tsx
 import StaggeredMenu from './blocks/Menu'
-import logo from '../assets/logos/logoopenmouth.svg'
 
 const menuItems = [
   { label: 'Home', ariaLabel: 'Go to home page', link: '/' },
@@ -23,7 +22,6 @@ export default function Header() {
       position="left"
       items={menuItems}
       socialItems={socialItems}
-      logoUrl={logo}
       isFixed
       colors={['#FFBF00', '#28BEA5']}
       accentColor="#797877"

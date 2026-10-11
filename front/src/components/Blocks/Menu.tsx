@@ -1,6 +1,7 @@
 import React, { useCallback, useLayoutEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
-
+import { useNavigate } from 'react-router-dom';
+import LottieAnimation from '../Lottietry';
 export interface StaggeredMenuItem {
   label: string;
   ariaLabel: string;
@@ -18,7 +19,6 @@ export interface StaggeredMenuProps {
   displaySocials?: boolean;
   displayItemNumbering?: boolean;
   className?: string;
-  logoUrl?: string;
   menuButtonColor?: string;
   openMenuButtonColor?: string;
   accentColor?: string;
@@ -37,7 +37,6 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   displaySocials = true,
   displayItemNumbering = true,
   className,
-  logoUrl = '/src/assets/logos/reactbits-gh-white.svg',
   menuButtonColor = '#fff',
   openMenuButtonColor = '#fff',
   changeMenuColorOnOpen = true,
@@ -47,6 +46,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   onMenuOpen,
   onMenuClose
 }: StaggeredMenuProps) => {
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const openRef = useRef(false);
 
@@ -70,6 +70,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 
   const toggleBtnRef = useRef<HTMLButtonElement | null>(null);
   const busyRef = useRef(false);
+  const hoverCloseTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const itemEntranceTweenRef = useRef<gsap.core.Tween | null>(null);
 
@@ -332,24 +333,6 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
     });
   }, []);
 
-  const toggleMenu = useCallback(() => {
-    const target = !openRef.current;
-    openRef.current = target;
-    setOpen(target);
-
-    if (target) {
-      onMenuOpen?.();
-      playOpen();
-    } else {
-      onMenuClose?.();
-      playClose();
-    }
-
-    animateIcon(target);
-    animateColor(target);
-    animateText(target);
-  }, [playOpen, playClose, animateIcon, animateColor, animateText, onMenuOpen, onMenuClose]);
-
   const closeMenu = useCallback(() => {
     if (openRef.current) {
       openRef.current = false;
@@ -361,6 +344,39 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
       animateText(false);
     }
   }, [playClose, animateIcon, animateColor, animateText, onMenuClose]);
+
+  const navigateWithTransition = useCallback((event: React.MouseEvent<HTMLAnchorElement>, link: string) => {
+    if (!link.startsWith('/')) return;
+
+    event.preventDefault();
+    const transition = document.startViewTransition?.(() => navigate(link));
+    if (!transition) navigate(link);
+    closeMenu();
+  }, [closeMenu, navigate]);
+
+  const openMenuOnHover = useCallback(() => {
+    if (hoverCloseTimeoutRef.current) {
+      clearTimeout(hoverCloseTimeoutRef.current);
+      hoverCloseTimeoutRef.current = null;
+    }
+
+    if (!openRef.current) {
+      openRef.current = true;
+      setOpen(true);
+      onMenuOpen?.();
+      playOpen();
+      animateIcon(true);
+      animateColor(true);
+      animateText(true);
+    }
+  }, [playOpen, animateIcon, animateColor, animateText, onMenuOpen]);
+
+  const closeMenuOnHover = useCallback(() => {
+    hoverCloseTimeoutRef.current = setTimeout(() => {
+      closeMenu();
+      hoverCloseTimeoutRef.current = null;
+    }, 120);
+  }, [closeMenu]);
 
   React.useEffect(() => {
     if (!closeOnClickAway || !open) return;
@@ -428,7 +444,8 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
             aria-label={open ? 'Close menu' : 'Open menu'}
             aria-expanded={open}
             aria-controls="staggered-menu-panel"
-            onClick={toggleMenu}
+            onMouseEnter={openMenuOnHover}
+            onMouseLeave={closeMenuOnHover}
             type="button"
           >
             <span
@@ -462,22 +479,19 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
           </button>
 
           <div className="sm-logo col-start-2 flex items-center justify-self-center select-none pointer-events-auto" aria-label="Logo">
-            <img
-              src={logoUrl || '/src/assets/logos/reactbits-gh-white.svg'}
-              alt="Logo"
-              className="sm-logo-img block h-16 w-auto object-contain"
-              draggable={false}
-              width={110}
-              height={110}
-            />
+            <div className='sm-logo-img block w-auto object-contain'>
+              <LottieAnimation></LottieAnimation>
+            </div>
           </div>
 
           <a
             href="/contact"
-            className="relative flex items-center isolate justify-self-end pointer-events-auto max-w-31 max-h-9 overflow-hidden rounded-3xl border-2 border-[#181716] bg-[#FFBF00] px-5 py-2.5 text-[11px] font-medium text-[#2D2200] transition-colors duration-400 before:absolute before:inset-0 before:-z-10 before:origin-left before:scale-x-0 before:bg-[#F0EEE6] before:transition-transform before:duration-300 before:content-[''] hover:text-[#FFBF00] hover:before:scale-x-100"
+            className="relative flex items-center isolate justify-self-end pointer-events-auto max-w-31 max-h-9 overflow-hidden rounded-3xl border-2 border-[#F0EEE6] bg-transparent px-5 py-2.5 text-[11px] font-medium text-[#F0EEE6] transition-colors duration-400 before:absolute before:inset-0 before:-z-10 before:origin-left before:scale-x-0 before:bg-[#F0EEE6] before:transition-transform before:duration-400 before:content-[''] hover:text-[#181716] hover:before:scale-x-100"
+            onClick={(event) => navigateWithTransition(event, '/contact')}
           >
             Lets connect
           </a>
+          
         </header>
 
         <aside
@@ -486,6 +500,8 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
           className="staggered-menu-panel absolute top-0 right-0 h-full bg-white flex flex-col p-[6em_2em_2em_2em] overflow-y-auto z-10 backdrop-blur-[12px] pointer-events-auto"
           style={{ WebkitBackdropFilter: 'blur(12px)' }}
           aria-hidden={!open}
+          onMouseEnter={openMenuOnHover}
+          onMouseLeave={closeMenuOnHover}
         >
           <div className="sm-panel-inner flex-1 flex flex-col gap-5">
             <ul
@@ -501,6 +517,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                       href={it.link}
                       aria-label={it.ariaLabel}
                       data-index={idx + 1}
+                      onClick={(event) => navigateWithTransition(event, it.link)}
                     >
                       <span className="sm-panel-itemLabel inline-block [transform-origin:50%_100%] will-change-transform">
                         {it.label}
@@ -547,10 +564,10 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 
       <style>{`
 .sm-scope .staggered-menu-wrapper { position: relative; width: 100%; height: 100%; z-index: 40; pointer-events: none; }
-.sm-scope .staggered-menu-header { position: absolute; top: 0; left: 0; width: 100%; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: center; padding: 2em; background: transparent; pointer-events: none; z-index: 20; }
+.sm-scope .staggered-menu-header { position: absolute; top: 0; left: 0; width: 100%; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: center; padding: 2.1vw; padding-right: 3.2vw; background: transparent; pointer-events: none; z-index: 20; }
 .sm-scope .staggered-menu-header > * { pointer-events: auto; }
 .sm-scope .sm-logo { display: flex; align-items: center; user-select: none; }
-.sm-scope .sm-logo-img { display: block; height: 64px; width: auto; object-fit: contain; }
+.sm-scope .sm-logo-img { display: block; height: 80px; width: auto; object-fit: contain; }
 .sm-scope .sm-toggle { position: relative; display: inline-flex; align-items: center; gap: 0.3rem; background: transparent; border: none; cursor: pointer; color: #e9e9ef; font-weight: 500; line-height: 1; overflow: visible; }
 .sm-scope .sm-toggle:focus-visible { outline: 2px solid #ffffffaa; outline-offset: 4px; border-radius: 4px; }
 .sm-scope .sm-line:last-of-type { margin-top: 6px; }

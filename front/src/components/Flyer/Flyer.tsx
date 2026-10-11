@@ -202,7 +202,7 @@ const TextLoop = ({
   const fitLength = metrics.length || undefined;
 
   return (
-    <div ref={rootRef} className={` relative w-full  overflow-hidden ${className}`.trim()} style={{ fontFamily: '"DRUKCYR", sans-serif', lineHeight: 0.9 }}>
+    <div ref={rootRef} className={` relative w-full  overflow-hidden ${className}`.trim()} style={{ fontFamily: '"DRUKCYR", sans-serif', lineHeight: 0.9, ...style }}>
       <svg  
         className="block w-full h-auto"
         viewBox={`0 0 ${VIEW_W} ${VIEW_H}`}
