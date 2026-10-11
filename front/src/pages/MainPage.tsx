@@ -14,7 +14,7 @@ import Showcase from '../components/Blocks/Showcase'
 
 export default function MainPage(){
     return(
-        <main className='w-full flex flex-col'>
+        <main className='w-full overflow-hidden flex flex-col'>
           <section className="flex flex-col items-center justify-center gap-6 pt-37 pb-12 px-6 text-center w-full mx-auto">
             <div className="relative flex justify-center px-[10%] w-full">
               <p
