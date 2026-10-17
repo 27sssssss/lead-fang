@@ -1,4 +1,4 @@
-import ReviewCard from "../cards/ReviewCard"
+import ReviewCard from "../Cards/ReviewCard"
 import reviews from "../../assets/review_cards.json"
 import CustomCursor from "../cursor/CustomCursor_Eye"
 import gsap from "gsap"

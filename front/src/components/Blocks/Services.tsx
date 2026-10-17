@@ -1,6 +1,6 @@
 export default function ServicesBlock(){
     return(
-        <div>
+        <div className="">
             <p className="text-[4vw] text-[#FFBF00] stroke-text2 relative top-[1.5vw] left-[3%] text-left" style={{ fontFamily: '"Azkia", sans-serif', lineHeight: 1}}>
                     Services
                 </p>

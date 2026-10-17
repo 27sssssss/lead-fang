@@ -1,5 +1,5 @@
 // Header.tsx
-import StaggeredMenu from './blocks/Menu'
+import StaggeredMenu from './Blocks/Menu'
 
 const menuItems = [
   { label: 'Home', ariaLabel: 'Go to home page', link: '/' },
