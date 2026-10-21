@@ -1,5 +1,7 @@
 import React, { useCallback, useLayoutEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+gsap.registerPlugin(ScrollTrigger);
 import { useNavigate } from 'react-router-dom';
 import LottieAnimation from '../Lottietry';
 import DepthText from './Logo';
@@ -291,6 +293,38 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
     [openMenuButtonColor, menuButtonColor, changeMenuColorOnOpen]
   );
 
+  const logoRef = useRef<HTMLDivElement | null>(null);
+
+  React.useEffect(() => {
+    const logo = logoRef.current;
+    if (!logo) return;
+    const vw = (percentage: number) => window.innerWidth * (percentage / 100);
+    const FADE_POINT_VW = 4; // порог скролла в vw
+    const fade = (visible: boolean) =>
+      gsap.to(logo, {
+        opacity: visible ? 1 : 0,
+        duration: 0.2,
+        ease: 'power1.out',
+        overwrite: 'auto',
+        onStart: () => {
+          if (visible) logo.style.pointerEvents = '';
+        },
+        onComplete: () => {
+          if (!visible) logo.style.pointerEvents = 'none';
+        },
+      });
+    const st = ScrollTrigger.create({
+      start: () => vw(FADE_POINT_VW),
+      end: 'max',
+      onEnter: () => fade(false),
+      onLeaveBack: () => fade(true),
+    });
+    return () => {
+      st.kill();
+      gsap.killTweensOf(logo);
+    };
+  }, []);
+
   React.useEffect(() => {
     if (toggleBtnRef.current) {
       if (changeMenuColorOnOpen) {
@@ -479,7 +513,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
             </span>
           </button>
 
-          <div className="sm-logo col-start-2 flex items-center justify-self-center select-none pointer-events-auto" aria-label="Logo">
+          <div ref={logoRef} className="sm-logo col-start-2 flex items-center justify-self-center select-none pointer-events-auto" aria-label="Logo">
             <div className='sm-logo-img block w-auto object-contain'>
 
             <DepthText
@@ -492,7 +526,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
               float={false}
               tilt={2}
               pointerTracking
-              smoothing={0.3}
+              smoothing={0.04}
               perspective={900}
               autoOrbit
               orbitSpeed={0.35}

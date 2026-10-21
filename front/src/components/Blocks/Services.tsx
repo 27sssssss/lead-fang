@@ -1,15 +1,15 @@
 export default function ServicesBlock(){
     return(
-        <div className="">
+        <div className="px-5">
             <p className="text-[4vw] text-[#FFBF00] stroke-text2 relative top-[1.5vw] left-[3%] text-left" style={{ fontFamily: '"Azkia", sans-serif', lineHeight: 1}}>
                     Services
                 </p>
             <section className="bg-[#181716] border-[#F0EEE6] rounded-tr-[6vw] z-1 border-[0.25vw]">
-                    <p className="text-[10vw] px-[2.5vw] text-left uppercase" style={{ fontFamily: '"DRUKCYR", sans-serif', lineHeight: 0.91}}>
+                    <p className="text-[10vw] pl-[2.5vw] pt-[1.6vw] pb-[2.5vw] text-left uppercase" style={{ fontFamily: '"DRUKCYR", sans-serif', lineHeight: 0.91}}>
                         WE SHAPE YOUR IDEAS INTO NEW DISTINCTIVE VISUAL WORLDS.
                     </p>
                     <div className="grid grid-cols-3">
-                        <div className="bg-[#F0EEE6] rounded-br-[10vw] px-[1vw] py-[2.5vw] flex flex-col gap-[2vw] text-[#181716]">
+                        <div className="bg-[#F0EEE6] rounded-br-[10vw] px-[1vw] py-[2.5vw] flex flex-col gap-[2vw] text-[#181716] transition-[border-radius] duration-500 ease-out hover:rounded-br-none">
                             <p className="text-[5.2vw] max-w-[18.8vw] text-left px-[1.3vw] uppercase" style={{ fontFamily: '"DRUKCYR", sans-serif', lineHeight: 0.91}}>
                                 brand  identity
                             </p>
@@ -23,7 +23,7 @@ export default function ServicesBlock(){
 
                             </div>
                         </div>
-                        <div className="bg-[#181716] border-[0.3vw] border-b-0 px-[1vw] py-[2.5vw] flex flex-col gap-[2vw]">
+                        <div className="bg-[#181716] border-[0.3vw] border-b-0 px-[1vw] py-[2.5vw] flex flex-col gap-[2vw] transition-[border-radius] duration-500 ease-out hover:rounded-tr-[10vw]">
                             <p className="text-[5.2vw] max-w-[26vw] text-left px-[1.3vw] uppercase" style={{ fontFamily: '"DRUKCYR", sans-serif', lineHeight: 0.91}}>
                                 Campaigns & Advertising
                             </p>
@@ -37,7 +37,7 @@ export default function ServicesBlock(){
 
                             </div>
                         </div>
-                        <div className="bg-[#F0EEE6] rounded-bl-[6vw] px-[1vw] py-[2.5vw] flex flex-col gap-[2vw] text-[#181716]">
+                        <div className="bg-[#F0EEE6] rounded-bl-[6vw] px-[1vw] py-[2.5vw] flex flex-col gap-[2vw] text-[#181716] transition-[border-radius] duration-500 ease-out hover:rounded-bl-none">
                             <p className="text-[5.2vw] max-w-[18.8vw] text-left px-[1.3vw] uppercase" style={{ fontFamily: '"DRUKCYR", sans-serif', lineHeight: 0.91}}>
                                 Print & Communications
                             </p>
@@ -49,7 +49,7 @@ export default function ServicesBlock(){
                                 <p>• Corporate & Promotional Design</p>
                             </div>
                         </div>
-                        <div className="bg-[#181716] border-[0.3vw] border-l-0 border-b-0 rounded-tr-[10vw] px-[1vw] py-[2.2vw] flex flex-col gap-[2vw] text-[#f0EEE6]">
+                        <div className="bg-[#181716] border-[0.3vw] border-l-0 border-b-0 rounded-tr-[10vw] px-[1vw] py-[2.2vw] flex flex-col gap-[2vw] text-[#f0EEE6] transition-[border-radius] duration-500 ease-out hover:rounded-tr-none">
                             <p className="text-[5.2vw] max-w-[18.8vw] text-left px-[1.3vw] uppercase" style={{ fontFamily: '"DRUKCYR", sans-serif', lineHeight: 0.91}}>
                                 Digital & Motion
                             </p>
@@ -64,7 +64,7 @@ export default function ServicesBlock(){
 
                             </div>
                         </div>
-                        <div className="bg-[#F0EEE6] text-[#181716] px-[1vw] py-[2.5vw] flex flex-col gap-[2vw]">
+                        <div className="bg-[#F0EEE6] text-[#181716] px-[1vw] py-[2.5vw] flex flex-col gap-[2vw] transition-[border-radius] duration-500 ease-out hover:rounded-br-[10vw]">
                             <p className="text-[5.2vw] max-w-[26vw] text-left px-[1.3vw] uppercase" style={{ fontFamily: '"DRUKCYR", sans-serif', lineHeight: 0.91}}>
                                 Packaging & Environments
                             </p>
@@ -79,7 +79,7 @@ export default function ServicesBlock(){
 
                             </div>
                         </div>
-                        <div className="bg-[#181716] px-[1vw] py-[2.5vw] rounded-tl-[6vw] border-r-0 border-b-0 border-[0.3vw] flex flex-col gap-[2vw] text-[#f0eee6]">
+                        <div className="bg-[#181716] px-[1vw] py-[2.5vw] rounded-tl-[6vw] border-r-0 border-b-0 border-[0.3vw] flex flex-col gap-[2vw] text-[#f0eee6] transition-[border-radius] duration-500 ease-out hover:rounded-tl-none">
                             <p className="text-[5.2vw]  text-left px-[1.3vw] uppercase" style={{ fontFamily: '"DRUKCYR", sans-serif', lineHeight: 0.91}}>
                                 Campaigns & Advertising
                             </p>
