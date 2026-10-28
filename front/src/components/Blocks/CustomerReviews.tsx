@@ -4,11 +4,12 @@ import CustomCursor from "../cursor/CustomCursor_Eye"
 import gsap from "gsap"
 import { Draggable } from "gsap/Draggable"
 import { InertiaPlugin } from "gsap/InertiaPlugin"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { useEffect } from "react"
 import { useRef } from "react"
 import { useState } from "react"
 
-gsap.registerPlugin(Draggable, InertiaPlugin)
+gsap.registerPlugin(Draggable, InertiaPlugin, ScrollTrigger)
 
 
 const CARD_OFFSETS: {x: number; y: number}[] = [
@@ -28,6 +29,9 @@ const CARD_OFFSETS: {x: number; y: number}[] = [
     { x: -35, y: 0 },
     { x: 20, y: -50 },
 ]
+
+
+const AUTOPLAY_DURATION = 70
 
 // отрицательное значение — карточка накладывается на предыдущую, положительное — обычный зазор
 const CARD_MARGINS: number[] = [
@@ -50,35 +54,72 @@ export default function CustomerReviews(){
         // ширина одного "прогона" ленты — половина, т.к. массив продублирован
         const loopWidth = track.scrollWidth / 2
 
-        const tween = gsap.to(track, {
-            x: -loopWidth,
-            duration: 40,
-            ease: "none",
-            repeat: -1,
-            modifiers: {
-                // оборачиваем координату так, чтобы лента "телепортировалась" бесшовно
-                x: gsap.utils.unitize(x => parseFloat(x) % loopWidth)
-            }
+        let tween: gsap.core.Tween | null = null
+        // множитель скорости ленты: 1 — обычная автопрокрутка, разгоняется скроллом страницы
+        const speed = { value: 1, target: 1 }
+
+        // автопрокрутка всегда стартует с текущей позиции: inertia-твин перезаписывает x,
+        // поэтому старый твин после броска мёртв и его нельзя просто resume()
+        function startAutoplay() {
+            tween?.kill()
+            tween = gsap.to(track, {
+                x: `-=${loopWidth}`,
+                duration: AUTOPLAY_DURATION,
+                ease: "none",
+                repeat: -1,
+                modifiers: {
+                    // оборачиваем координату так, чтобы лента "телепортировалась" бесшовно
+                    x: gsap.utils.unitize(x => parseFloat(x) % loopWidth)
+                }
+            })
+            // запас в 100 полных циклов, чтобы обратный ход от скролла вверх не упирался в начало твина;
+            // кратно duration, поэтому позиция ленты не меняется
+            tween.totalTime(AUTOPLAY_DURATION * 100).timeScale(speed.value)
+        }
+
+        startAutoplay()
+
+        // скролл вниз разгоняет ленту, вверх — крутит её назад; после остановки скорость плавно возвращается к 1
+        const scrollTrigger = ScrollTrigger.create({
+            trigger: track,
+            start: "top bottom",
+            end: "bottom top",
+            onUpdate: (self) => {
+                speed.target = 1 + gsap.utils.clamp(-6, 6, self.getVelocity() / 250)
+            },
         })
+
+        // один тикер вместо твинов: твины, созданные из onUpdate, убивались бы следующим апдейтом до первого рендера
+        function updateSpeed() {
+            speed.target += (1 - speed.target) * 0.05
+            speed.value += (speed.target - speed.value) * 0.15
+            tween?.timeScale(speed.value)
+        }
+
+        gsap.ticker.add(updateSpeed)
 
         const [draggable] = Draggable.create(track, {
             type: "x",
             inertia: true,
-            maxDuration: 1,
+            maxDuration: 0.6,
             minDuration: 0.3,
             overshootTolerance: 0,
+            dragResistance: 0.2,
             onPress: function (this: Draggable) {
-                tween.pause()
+                tween?.kill()
                 lastXRef.current = this.x
             },
             onDrag: applyDragEffects,
             onThrowUpdate: applyDragEffects,
-            onDragEnd: () => {
-                tween.resume()
-                springTiltBack()
+            onRelease: function (this: Draggable) {
+                // без броска (клик или медленный драг) onThrowComplete не придёт
+                if (!this.isThrowing) {
+                    startAutoplay()
+                    springTiltBack()
+                }
             },
             onThrowComplete: () => {
-                tween.resume()
+                startAutoplay()
                 springTiltBack()
             },
         })
@@ -106,7 +147,7 @@ export default function CustomerReviews(){
             const deltaX = this.x - lastXRef.current
             lastXRef.current = this.x
 
-            const tilt = gsap.utils.clamp(-6, 6, deltaX * 0.2)
+            const tilt = gsap.utils.clamp(-6, 6, deltaX * 0.1)
             const targets = getCardTargets()
             gsap.to(targets.map(t => t.el), {
                 rotate: (i) => targets[i].base + tilt,
@@ -128,7 +169,9 @@ export default function CustomerReviews(){
         }
 
         return () => {
-            tween.kill()
+            tween?.kill()
+            scrollTrigger.kill()
+            gsap.ticker.remove(updateSpeed)
             draggable.kill()
         }
     }, [])
