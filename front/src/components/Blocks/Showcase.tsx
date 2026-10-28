@@ -4,6 +4,22 @@ import case3 from '../../assets/cases/case3.png'
 import case4 from '../../assets/cases/case4.png'
 import case5 from '../../assets/cases/case5.png'
 
+// на ховере полная картинка затемняется и становится фоном, а её копия сжимается в центр — «картинка в картинке»
+function CaseImage({ src, className = '' }: { src: string; className?: string }) {
+    const ease = 'duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none'
+    return (
+        <div className={`group relative overflow-hidden ${className}`}>
+            <img src={src} className='block w-full h-full object-cover' />
+            <div className={`absolute inset-0 bg-black/50 opacity-0 transition-opacity group-hover:opacity-100 ${ease}`} />
+            <img
+                src={src}
+                aria-hidden='true'
+                className={`absolute inset-0 w-full h-full object-cover rounded-[1.5vw] transition-transform group-hover:scale-70 ${ease}`}
+            />
+        </div>
+    )
+}
+
 export default function Showcase(){
     return(
         <>
@@ -20,7 +36,7 @@ export default function Showcase(){
               <div className='grid grid-cols-2'>
                 <div className='flex flex-col justify-between'>
                   <div className='flex flex-col'>
-                    <img src={case1} className='w-full rounded-br-[6vw]'></img>
+                    <CaseImage src={case1} className='rounded-br-[6vw]' />
                       <div className='border-[0.3vw] pt-[1vw] px-[2.5vw] pb-[1.4vw] border-[#f0eee6] flex flex-col text-left uppercase rounded-tr-[6vw] font-normal'>
                         <p className='text-[0.66vw]'>
                           Case1case1case1case1casdd1
@@ -32,7 +48,7 @@ export default function Showcase(){
                   </div>
                   <div className='grid grid-cols-2'>
                       <div className='flex flex-col'>
-                        <img src={case3} className='w-full'></img>
+                        <CaseImage src={case3} />
                           <div className='flex flex-col text-left uppercase bg-[#f0eee6] text-[#181716] font-normal border-[0.3vw] pt-[1vw] px-[2.5vw] pb-[1.2vw] border-[#f0eee6]'>
                             <p className='text-[0.66vw]'>
                               No fluff. Just brands with bite.
@@ -44,7 +60,7 @@ export default function Showcase(){
                       </div>
                   <div>
                   <div className='flex flex-col'>
-                    <img src={case4} className='w-full'></img>
+                    <CaseImage src={case4} />
                     <div className='flex flex-col text-left uppercase text-[#f0eee6] font-normal border-[0.3vw] pt-[1vw] px-[2.5vw] pb-[1.2vw] border-[#f0eee6]'>
                         <p className='text-[0.66vw]'>
                           No fluff. Just brands with bite.
@@ -58,7 +74,7 @@ export default function Showcase(){
                   </div>
                 </div>
                   <div className='flex flex-col'>
-                    <img src={case2} className='h-full rounded-tr-[6vw]'></img>
+                    <CaseImage src={case2} className='h-full rounded-tr-[6vw]' />
                     <div className='flex flex-col text-left uppercase text-[#181716] font-normal border-l-0 bg-[#f0eee6]  border-[0.3vw] pt-[1vw] px-[2.5vw] pb-[1.2vw] border-[#f0eee6]'>
                         <p className='text-[0.66vw]'>
                           No fluff. Just brands with bite.
@@ -71,7 +87,7 @@ export default function Showcase(){
               </div>
               <div className=''>
                 <div className='flex flex-col '>
-                    <img src={case5} className='w-full'></img>
+                    <CaseImage src={case5} />
                     <div className='flex flex-col text-left uppercase bg-[#f0eee6] text-[#181716] font-normal border-[0.3vw] pt-[1vw] px-[2.5vw] pb-[1.2vw] border-[#f0eee6]'>
                         <p className='text-[0.66vw]'>
                           No fluff. Just brands with bite.

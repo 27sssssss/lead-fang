@@ -1,7 +1,9 @@
 import React, { useCallback, useLayoutEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+gsap.registerPlugin(ScrollTrigger);
 import { useNavigate } from 'react-router-dom';
-import LottieAnimation from '../Lottietry';
+import DepthText from './Logo';
 export interface StaggeredMenuItem {
   label: string;
   ariaLabel: string;
@@ -290,6 +292,38 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
     [openMenuButtonColor, menuButtonColor, changeMenuColorOnOpen]
   );
 
+  const logoRef = useRef<HTMLDivElement | null>(null);
+
+  React.useEffect(() => {
+    const logo = logoRef.current;
+    if (!logo) return;
+    const vw = (percentage: number) => window.innerWidth * (percentage / 100);
+    const FADE_POINT_VW = 4; // порог скролла в vw
+    const fade = (visible: boolean) =>
+      gsap.to(logo, {
+        opacity: visible ? 1 : 0,
+        duration: 0.2,
+        ease: 'power1.out',
+        overwrite: 'auto',
+        onStart: () => {
+          if (visible) logo.style.pointerEvents = '';
+        },
+        onComplete: () => {
+          if (!visible) logo.style.pointerEvents = 'none';
+        },
+      });
+    const st = ScrollTrigger.create({
+      start: () => vw(FADE_POINT_VW),
+      end: 'max',
+      onEnter: () => fade(false),
+      onLeaveBack: () => fade(true),
+    });
+    return () => {
+      st.kill();
+      gsap.killTweensOf(logo);
+    };
+  }, []);
+
   React.useEffect(() => {
     if (toggleBtnRef.current) {
       if (changeMenuColorOnOpen) {
@@ -478,9 +512,30 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
             </span>
           </button>
 
-          <div className="sm-logo col-start-2 flex items-center justify-self-center select-none pointer-events-auto" aria-label="Logo">
+          <div ref={logoRef} className="sm-logo col-start-2 flex items-center justify-self-center select-none pointer-events-auto" aria-label="Logo">
             <div className='sm-logo-img block w-auto object-contain'>
-              <LottieAnimation></LottieAnimation>
+
+            <DepthText
+              text="LEAD&FANG"
+              layers={30}
+              depth={3}
+              depthColor="#181716"
+              gradientDepth={false}
+              hoverPush={0.5}
+              float={false}
+              tilt={2}
+              pointerTracking
+              smoothing={0.04}
+              perspective={900}
+              autoOrbit
+              orbitSpeed={0.35}
+              fontSize="2.5vw"
+              fontWeight={900}
+              shadow={false}
+              outline={false}
+              intro
+              faceColor="#f0eee6"
+            />
             </div>
           </div>
 
@@ -567,7 +622,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 .sm-scope .staggered-menu-header { position: absolute; top: 0; left: 0; width: 100%; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: center; padding: 2.1vw; padding-right: 3.2vw; background: transparent; pointer-events: none; z-index: 20; }
 .sm-scope .staggered-menu-header > * { pointer-events: auto; }
 .sm-scope .sm-logo { display: flex; align-items: center; user-select: none; }
-.sm-scope .sm-logo-img { display: block; height: 80px; width: auto; object-fit: contain; }
+.sm-scope .sm-logo-img { display: block; width: auto; object-fit: contain; }
 .sm-scope .sm-toggle { position: relative; display: inline-flex; align-items: center; gap: 0.3rem; background: transparent; border: none; cursor: pointer; color: #e9e9ef; font-weight: 500; line-height: 1; overflow: visible; }
 .sm-scope .sm-toggle:focus-visible { outline: 2px solid #ffffffaa; outline-offset: 4px; border-radius: 4px; }
 .sm-scope .sm-line:last-of-type { margin-top: 6px; }

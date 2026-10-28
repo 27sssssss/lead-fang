@@ -64,30 +64,60 @@ export default function QasAccordion () {
                         const answerId = `manifesto-answer-${index}`
 
                         return (
-                            <div className='outline-blocknew p-5 flex py-10 flex-row items-start'>
-                                <p>q{index}</p>
-                                <li key={faq.question} className="">
+                            <li key={faq.question} className='outline-blocknew p-5 flex py-10 flex-row items-start gap-8'>
+                                <p className={`font-extralight uppercase transition-colors duration-500 ${isOpen ? 'text-[#FFBF00]' : ''}`}>Q{index}</p>
+                                <div className="w-full">
                                     <button
                                         type="button"
-                                        className="flex w-full items-center justify-between gap-5  text-left text-[clamp(1rem,1.5vw,1.5rem)] uppercase"
+                                        id={`manifesto-question-${index}`}
+                                        className="group flex w-full items-center justify-between gap-5  text-left text-[clamp(1rem,1.5vw,1.5rem)] uppercase"
                                         aria-expanded={isOpen}
                                         aria-controls={answerId}
                                         onClick={() => setSelected(isOpen ? null : index)}
                                     >
                                         <span>{faq.question}</span>
-                                        <span aria-hidden="true" className="text-[#FFBF00] text-2xl">
-                                            {isOpen ? '−' : '+'}
+                                        <span aria-hidden="true" className="flex size-8 shrink-0 items-center justify-center rounded-sm p-1">
+                                            <span
+                                                className={`relative flex size-full items-center justify-center rounded-[1px] transition-[background-color,rotate,scale] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110 group-active:scale-90 motion-reduce:transition-none ${
+                                                    isOpen ? 'rotate-180 bg-[#FFBF00]' : 'rotate-0 bg-[#F0EEE6]'
+                                                }`}
+                                            >
+                                                <span className="absolute h-[2px] w-3 bg-black" />
+                                                <span
+                                                    className={`absolute h-3 w-[2px] bg-black transition-[rotate,opacity] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none ${
+                                                        isOpen ? 'rotate-90 opacity-0' : 'rotate-0 opacity-100'
+                                                    }`}
+                                                />
+                                            </span>
                                         </span>
                                     </button>
-                                    {isOpen && (
-                                        <ul id={answerId} className=" space-y-3 pb-6 pr-8 text-[clamp(0.9rem,1.1vw,1.125rem)] leading-relaxed">
-                                            {faq.answers.map((answer) => (
-                                                <li key={answer}>{answer}</li>
-                                            ))}
-                                        </ul>
-                                    )}
-                                </li>
-                            </div>
+                                    <div
+                                        id={answerId}
+                                        role="region"
+                                        aria-labelledby={`manifesto-question-${index}`}
+                                        aria-hidden={!isOpen}
+                                        className={`grid transition-[grid-template-rows] ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none ${
+                                            isOpen ? 'grid-rows-[1fr] duration-700' : 'grid-rows-[0fr] duration-500'
+                                        }`}
+                                    >
+                                        <div className="min-h-0 overflow-hidden">
+                                            <ul className="space-y-3 pt-6 pr-8 text-[clamp(0.9rem,1.1vw,1.125rem)] leading-relaxed">
+                                                {faq.answers.map((answer, answerIndex) => (
+                                                    <li
+                                                        key={answer}
+                                                        className={`transition-[opacity,translate,filter] ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none ${
+                                                            isOpen ? 'translate-y-0 opacity-100 blur-0 duration-700' : 'translate-y-3 opacity-0 blur-[4px] duration-300'
+                                                        }`}
+                                                        style={{ transitionDelay: isOpen ? `${150 + answerIndex * 80}ms` : '0ms' }}
+                                                    >
+                                                        {answer}
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
                         )
                     })}
                 </ul>

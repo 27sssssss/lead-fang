@@ -1,18 +1,19 @@
 import TypingText from '../components/TypeWriter'
-import CustomerReviews from '../components/Blocks/CustomerReviews'
-import Footer from '../components/Blocks/Footer'
-import QasAccordion from '../components/Blocks/Accordeon'
-import LotOfTextBlock from '../components/Blocks/LotOfText'
-import ServicesBlock from '../components/Blocks/Services'
-import TheyMust from '../components/Blocks/TheyMust'
-import Showcase from '../components/Blocks/Showcase'
+import CustomerReviews from '../components/blocks/CustomerReviews'
+import Footer from '../components/blocks/Footer'
+import QasAccordion from '../components/blocks/Accordeon'
+import LotOfTextBlock from '../components/blocks/LotOfText'
+import ServicesBlock from '../components/blocks/Services'
+import TheyMust from '../components/blocks/TheyMust'
+import Showcase from '../components/blocks/Showcase'
 
 //clamp(10px, 1vw, 140px)
 
 export default function MainPage(){
+
     return(
-        <main className='w-full overflow-hidden flex flex-col'>
-          <section className="flex flex-col items-center justify-center gap-6 pt-37 pb-12 px-6 text-center w-full mx-auto">
+        <main className='w-full overflow-hidden flex flex-col pt-[2vw] gap-[10vw]'>
+          <section className="flex flex-col items-center justify-center gap-6  px-6 text-center w-full mx-auto h-screen">
             <div className="relative flex justify-center px-[10%] w-full">
               <p
                 className="text-[14.7vw] font-bold "
@@ -40,26 +41,17 @@ export default function MainPage(){
           </div>
           </section>
 
-            <section className='pt-20'>
-              <LotOfTextBlock></LotOfTextBlock>
-            </section>
-              <TheyMust></TheyMust>
-
-            <div className='px-5'>
-              <ServicesBlock></ServicesBlock>
-            </div>
-            
-            <Showcase>
-            </Showcase>
+          <LotOfTextBlock></LotOfTextBlock>
+          <TheyMust></TheyMust>
+          <ServicesBlock></ServicesBlock>
+          <Showcase></Showcase>
             
             <QasAccordion></QasAccordion>
 
-          <section className='pt-40'>
 
             <CustomerReviews>
 
             </CustomerReviews>
-          </section>
           <Footer></Footer>
         </main>
     )
