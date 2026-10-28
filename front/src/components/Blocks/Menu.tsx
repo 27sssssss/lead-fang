@@ -3,7 +3,6 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 import { useNavigate } from 'react-router-dom';
-import LottieAnimation from '../Lottietry';
 import DepthText from './Logo';
 export interface StaggeredMenuItem {
   label: string;
