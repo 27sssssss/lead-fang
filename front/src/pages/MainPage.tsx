@@ -7,31 +7,9 @@ import ServicesBlock from '../components/Blocks/Services'
 import TheyMust from '../components/Blocks/TheyMust'
 import Showcase from '../components/Blocks/Showcase'
 
-import { useLayoutEffect } from 'react'
-
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { ScrollSmoother } from 'gsap/ScrollSmoother'
-
-gsap.registerPlugin(ScrollTrigger, ScrollSmoother)
-//clamp(10px, 1vw, 140px)
-
 export default function MainPage(){
 
-    useLayoutEffect(() => {
-      const smoother = ScrollSmoother.create({
-        wrapper: '#smooth-wrapper',
-        content: '#smooth-content',
-        smooth: 1,
-        effects: true,
-        smoothTouch: 0.1,
-      })
-      return () => smoother.kill()
-    }, [])
-  
     return(
-      <div id="smooth-wrapper">
-       <div id="smooth-content">
         <main className='w-full overflow-hidden flex flex-col pt-[2vw] gap-[10vw]'>
           <section className="flex flex-col items-center justify-center gap-6  px-6 text-center w-full mx-auto h-screen">
             <div className="relative flex justify-center px-[10%] w-full">
@@ -74,7 +52,5 @@ export default function MainPage(){
             </CustomerReviews>
           <Footer></Footer>
         </main>
-       </div>
-      </div>
     )
 }
