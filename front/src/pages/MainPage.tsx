@@ -32,29 +32,29 @@ export default function MainPage(){
     return(
       <div id="smooth-wrapper">
        <div id="smooth-content">
-        <main className='w-full overflow-hidden flex flex-col pt-[2vw] gap-[10vw]'>
-          <section className="flex flex-col items-center justify-center gap-6  px-6 text-center w-full mx-auto h-screen">
-            <div className="relative flex justify-center px-[10%] w-full">
+        <main className='w-full overflow-hidden flex flex-col pt-[2vw] gap-[10vw] max-md:gap-20'>
+          <section className="flex flex-col items-center justify-center gap-6  px-6 text-center w-full mx-auto h-screen max-md:h-svh max-md:px-4">
+            <div className="relative flex justify-center px-[10%] max-md:px-0 w-full">
               <p
-                className="text-[14.7vw] font-bold "
+                className="text-[14.7vw] max-md:text-[19vw] font-bold "
                 style={{ fontFamily: '"DRUKCYR", sans-serif', lineHeight: 0.9 }}
               >
                 YOUR BRAND HAS SOMETHING TO SAY
               </p>
 
               <p
-                className="absolute top-[98%] -translate-y-1/2 left-[23.6%] text-[11vw] stroke-text"
+                className="absolute top-[98%] -translate-y-1/2 left-[23.6%] max-md:left-[10%] text-[11vw] max-md:text-[14vw] stroke-text"
                 style={{ fontFamily: '"AZKIA", sans-serif' }}
               >
                 We give it teeth
               </p>
             </div>
 
-            <div className='relative mx-auto mt-23 outline-block py-5 px-0 w-[50vw]'>
+            <div className='relative mx-auto mt-23 outline-block py-5 px-0 w-[50vw] max-md:w-[85vw] max-lg:w-[70vw]'>
               <span className="absolute -right-1 -top-1 block h-3 w-3 border bg-[#F0EEE6] border-[#F0EEE6]" />
               <span className="absolute -left-1 -bottom-1 block h-3 w-3 border bg-[#F0EEE6] border-[#F0EEE6]" />
               <div className='py-[0.5vw]'>
-                <TypingText text='No fluff just brands with bite' className="text-[1.8vw]" speed={50}>
+                <TypingText text='No fluff just brands with bite' className="text-[1.8vw] max-lg:text-base" speed={50}>
                 </TypingText>
               </div>
 

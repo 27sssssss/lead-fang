@@ -48,12 +48,12 @@ export default function QasAccordion () {
 
     return (
         <section className="pt-5">
-            <p className="text-[4vw] text-[#FFBF00] -rotate-3 stroke-text2 relative left-[3%] text-left" style={{ fontFamily: '"Azkia", sans-serif', lineHeight: 1 }}>
+            <p className="text-[4vw] max-md:text-[9vw] text-[#FFBF00] -rotate-3 stroke-text2 relative left-[3%] text-left" style={{ fontFamily: '"Azkia", sans-serif', lineHeight: 1 }}>
                 The manifesto
             </p>
-            <div className="border-[0.27vw] border-[#F0EEE6] pt-[3.5vw] pb-[1.5vw] pl-[1.5vw] grid grid-cols-[33%_67.5%]">
+            <div className="border-[0.27vw] border-[#F0EEE6] pt-[3.5vw] pb-[1.5vw] pl-[1.5vw] grid grid-cols-[33%_67.5%] max-md:grid-cols-1 max-md:px-4 max-md:pt-8 max-md:gap-8 max-md:border-2">
                 <div className=''>
-                    <p className="text-[clamp(3.5rem,8vw,9.5vw)] text-left uppercase" style={{ fontFamily: '"DRUKCYR", sans-serif', lineHeight: 0.91 }}>
+                    <p className="text-[clamp(3.5rem,8vw,9.5vw)] max-md:text-[13vw] text-left uppercase" style={{ fontFamily: '"DRUKCYR", sans-serif', lineHeight: 0.91 }}>
                         THE RULES OF ENGAGEMENT FOR BUILDING DOMINANT BRANDS.
                     </p>
                 </div>
@@ -64,7 +64,7 @@ export default function QasAccordion () {
                         const answerId = `manifesto-answer-${index}`
 
                         return (
-                            <li key={faq.question} className='outline-blocknew p-5 flex py-10 flex-row items-start gap-8'>
+                            <li key={faq.question} className='outline-blocknew p-5 flex py-10 max-md:py-6 max-md:px-3 flex-row items-start gap-8 max-md:gap-4'>
                                 <p className={`font-extralight uppercase transition-colors duration-500 ${isOpen ? 'text-[#FFBF00]' : ''}`}>Q{index}</p>
                                 <div className="w-full">
                                     <button
@@ -101,7 +101,7 @@ export default function QasAccordion () {
                                         }`}
                                     >
                                         <div className="min-h-0 overflow-hidden">
-                                            <ul className="space-y-3 pt-6 pr-8 text-[clamp(0.9rem,1.1vw,1.125rem)] leading-relaxed">
+                                            <ul className="space-y-3 pt-6 pr-8 max-md:pr-0 text-[clamp(0.9rem,1.1vw,1.125rem)] leading-relaxed">
                                                 {faq.answers.map((answer, answerIndex) => (
                                                     <li
                                                         key={answer}

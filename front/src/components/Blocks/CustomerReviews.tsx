@@ -180,14 +180,14 @@ export default function CustomerReviews(){
         <div className="flex flex-col items-center">
             <div className="relative flex flex-col justify-center max-w-228.75 w-full pb-10">
                 <p
-                className="text-[11rem] font-bold "
+                className="text-[11rem] max-md:text-[24vw] font-bold "
                 style={{ fontFamily: '"DRUKCYR", sans-serif', lineHeight: 0.9 }}
                 >
                 CUSTOMERS
                 </p>
 
                 <p
-                className="text-9xl stroke-text absolute top-[40%] left-[33%]"
+                className="text-9xl max-md:text-[16vw] stroke-text absolute top-[40%] left-[33%] max-md:left-[25%]"
                 style={{ fontFamily: '"AZKIA", sans-serif' }}
                 >
                 Confessions
@@ -195,7 +195,7 @@ export default function CustomerReviews(){
           </div>
             <div ref={wrapperRef} className="relative w-full overflow-x-hidden overflow-y-hidden">
                 <CustomCursor containerRef={wrapperRef} isOpen={isCardHovered} />
-                <div ref={trackRef} className="flex w-max items-center py-32 cursor-grab active:cursor-grabbing">
+                <div ref={trackRef} className="flex w-max items-center py-32 max-md:py-24 cursor-grab active:cursor-grabbing">
                     {loopedReviews.map((review, index) => {
                         const { y } = CARD_OFFSETS[index % CARD_OFFSETS.length]
                         return (
