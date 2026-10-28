@@ -3,7 +3,7 @@ import LottieAnimation from "../Lottietry"
 export default function TheyMust (){
     return(
         <>
-            <section className="h-screen flex flex-col items-center bg-[#181716] px-[24vw] gap-[2vw]">
+            <section className="flex flex-col items-center bg-[#181716] px-[24vw] gap-[2vw]">
                 <LottieAnimation></LottieAnimation>
                 <p className="text-[8.8vw] uppercase" style={{ fontFamily: '"DRUKCYR", sans-serif', lineHeight: 0.91}}>
                     They must recognize your brand

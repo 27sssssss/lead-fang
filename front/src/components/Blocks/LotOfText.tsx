@@ -34,7 +34,7 @@ export default function LotOfTextBlock () {
     }, []);
 
     return(
-        <section ref={sectionRef} className="bg-[#F0EEE6] px-[2.5vw] pt-[5.5vw] pb-[2.5vw] text-[#181716] rounded-b-[4.5vw] flex flex-col gap-[5vw] h-screen" >
+        <section ref={sectionRef} className="bg-[#F0EEE6] px-[2.5vw] pt-[5.5vw] pb-[2.5vw] text-[#181716] rounded-b-[4.5vw] flex flex-col gap-[5vw]" >
             <p className="text-[9.8vw] text-left uppercase" style={{ fontFamily: '"DRUKCYR", sans-serif', lineHeight: 0.91}} aria-label={HEADLINE}>
                 {HEADLINE.split(' ').map((word, i, arr) => (
                     <span key={i} aria-hidden>
