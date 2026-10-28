@@ -1,11 +1,11 @@
 import TypingText from '../components/TypeWriter'
-import CustomerReviews from '../components/blocks/CustomerReviews'
-import Footer from '../components/blocks/Footer'
-import QasAccordion from '../components/blocks/Accordeon'
-import LotOfTextBlock from '../components/blocks/LotOfText'
-import ServicesBlock from '../components/blocks/Services'
-import TheyMust from '../components/blocks/TheyMust'
-import Showcase from '../components/blocks/Showcase'
+import CustomerReviews from '../components/Blocks/CustomerReviews'
+import Footer from '../components/Blocks/Footer'
+import QasAccordion from '../components/Blocks/Accordeon'
+import LotOfTextBlock from '../components/Blocks/LotOfText'
+import ServicesBlock from '../components/Blocks/Services'
+import TheyMust from '../components/Blocks/TheyMust'
+import Showcase from '../components/Blocks/Showcase'
 
 //clamp(10px, 1vw, 140px)
 
