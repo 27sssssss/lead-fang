@@ -45,12 +45,12 @@ export default function Preloader() {
   return (
     <div
       aria-hidden="true"
-      className={`fixed inset-0 z-[100] flex items-center justify-center bg-[#181716] transition-opacity ease-out ${
+      className={`fixed inset-0 z-[100] overflow-hidden flex items-center justify-center bg-[#181716] transition-opacity ease-out ${
         hiding ? "opacity-0 pointer-events-none" : "opacity-100"
       }`}
       style={{ transitionDuration: `${FADE_MS}ms` }}
     >
-      <div ref={containerRef} className="w-[100vw] max-md:w-[95vw]" />
+      <div ref={containerRef} className="w-[100vw] max-md:w-[400vw] max-md:shrink-0" />
     </div>
   );
 }
