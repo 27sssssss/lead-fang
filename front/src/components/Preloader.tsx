@@ -2,7 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import lottie from "lottie-web";
 import animationData from "../assets/tiger (transparent bg).json";
 
-const FADE_MS = 600;
+const FADE_MS = 300;
+const EARLY_FRAMES = 30
 
 // полноэкранная заставка: тигр проигрывается один раз, после чего (и после загрузки страницы) плавно исчезает
 export default function Preloader() {
@@ -27,8 +28,10 @@ export default function Preloader() {
       animationData,
     });
 
-    // если страница ещё грузится, держим последний кадр до события load
-    animation.addEventListener("complete", () => {
+    let started = false;
+    animation.addEventListener("enterFrame", () => {
+      if (started || animation.currentFrame < animation.totalFrames - EARLY_FRAMES) return;
+      started = true;
       if (document.readyState === "complete") hide();
       else window.addEventListener("load", hide, { once: true });
     });
