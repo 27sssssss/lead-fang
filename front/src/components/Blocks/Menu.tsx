@@ -472,7 +472,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
         >
           <button
             ref={toggleBtnRef}
-            className={`sm-toggle order-first justify-self-start max-md:col-start-3 max-md:justify-self-end relative inline-flex items-center gap-[0.3rem] bg-transparent border-0 cursor-pointer font-medium leading-none overflow-visible pointer-events-auto ${
+            className={`sm-toggle order-first justify-self-start max-md:col-start-3 max-md:justify-self-end max-lg:bg-[#181716]/70! max-lg:backdrop-blur-sm max-lg:rounded-full max-lg:px-3 max-lg:py-2 relative inline-flex items-center gap-[0.3rem] bg-transparent border-0 cursor-pointer font-medium leading-none overflow-visible pointer-events-auto ${
               open ? 'text-black' : 'text-[#e9e9ef]'
             }`}
             aria-label={open ? 'Close menu' : 'Open menu'}
@@ -541,7 +541,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 
           <a
             href="/contact"
-            className="relative flex max-md:hidden items-center isolate justify-self-end pointer-events-auto max-w-31 max-h-9 overflow-hidden rounded-3xl border-2 border-[#F0EEE6] bg-transparent px-5 py-2.5 text-[11px] font-medium text-[#F0EEE6] transition-colors duration-400 before:absolute before:inset-0 before:-z-10 before:origin-left before:scale-x-0 before:bg-[#F0EEE6] before:transition-transform before:duration-400 before:content-[''] hover:text-[#181716] hover:before:scale-x-100"
+            className="relative flex max-md:hidden items-center isolate justify-self-end pointer-events-auto max-w-31 max-h-9 md:max-lg:max-w-none md:max-lg:whitespace-nowrap overflow-hidden rounded-3xl border-2 border-[#F0EEE6] bg-transparent px-5 py-2.5 text-[11px] font-medium text-[#F0EEE6] transition-colors duration-400 before:absolute before:inset-0 before:-z-10 before:origin-left before:scale-x-0 before:bg-[#F0EEE6] before:transition-transform before:duration-400 before:content-[''] hover:text-[#181716] hover:before:scale-x-100"
             onClick={(event) => navigateWithTransition(event, '/contact')}
           >
             Lets connect

@@ -14,7 +14,7 @@ export default function MainPage(){
 
     return(
         <main className='w-full overflow-hidden flex flex-col pt-[2vw] gap-[10vw]'>
-          <section className="flex flex-col items-center justify-center gap-6  px-6 text-center w-full mx-auto h-screen max-md:h-auto max-md:pt-24 max-md:pb-6 max-md:px-2.5">
+          <section className="flex flex-col items-center justify-center gap-6  px-6 text-center w-full mx-auto h-screen max-md:h-auto max-md:pt-24 max-md:pb-6 max-md:px-2.5 md:max-lg:h-auto md:max-lg:pt-44 md:max-lg:pb-16">
             <div className="relative flex justify-center px-[10%] w-full max-md:px-0">
               <p
                 className="text-[14.7vw] font-bold max-md:text-[16.5vw]"
@@ -35,7 +35,7 @@ export default function MainPage(){
               <span className="absolute -right-1 -top-1 block h-3 w-3 border bg-[#F0EEE6] border-[#F0EEE6]" />
               <span className="absolute -left-1 -bottom-1 block h-3 w-3 border bg-[#F0EEE6] border-[#F0EEE6]" />
               <div className='py-[0.5vw]'>
-                <TypingText text='No fluff just brands with bite' className="text-[1.8vw] max-md:text-[3vw]" speed={50}>
+                <TypingText text='No fluff just brands with bite' className="text-[1.8vw] max-md:text-[3vw] md:max-lg:text-[2.2vw]" speed={50}>
                 </TypingText>
               </div>
 

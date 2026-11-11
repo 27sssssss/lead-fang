@@ -64,7 +64,7 @@ export default function QasAccordion () {
                         const answerId = `manifesto-answer-${index}`
 
                         return (
-                            <li key={faq.question} className='outline-blocknew p-5 flex py-10 flex-row items-start gap-8 max-md:px-0 max-md:py-6 max-md:gap-2'>
+                            <li key={faq.question} className='outline-blocknew p-5 flex py-10 flex-row items-start gap-8 max-md:px-5 max-md:py-6 max-md:gap-2'>
                                 <p className={`font-extralight uppercase max-md:hidden transition-colors duration-500 ${isOpen ? 'text-[#FFBF00]' : ''}`}>Q{index}</p>
                                 <div className="w-full">
                                     <button

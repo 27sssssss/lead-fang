@@ -45,25 +45,25 @@ export default function LotOfTextBlock () {
                     </span>
                 ))}
             </p>
-            <div className="flex flex-row gap-[10vw] pr-[3vw] max-md:flex-col-reverse max-md:gap-6 max-md:pr-0">
+            <div className="flex flex-row gap-[10vw] pr-[3vw] max-md:flex-col-reverse max-md:gap-6 max-md:pr-0 md:max-lg:gap-[5vw]">
                 <div className="lot-fade min-w-[43.3vw] pt-[0.2vw] max-md:min-w-0 max-md:pr-[20vw]">
                     <p className="text-[3.3vw] max-md:text-[5vw] text-left" style={{ fontFamily: '"DRUKCYR", sans-serif', lineHeight: 1.1}}>
                         Lead & Fang is an independent creative agency based in Nova Scotia, Canada, working with ambitious businesses around the world.
                     </p>
                 </div>
-                <p className="lot-fade text-[1.2vw] max-md:text-[3.4vw] text-left" style={{ fontFamily: '"AzeretMono", sans-serif', lineHeight: 1.1}}>
+                <p className="lot-fade text-[1.2vw] max-md:text-[3.4vw] md:max-lg:text-[1.9vw] text-left" style={{ fontFamily: '"AzeretMono", sans-serif', lineHeight: 1.1}}>
                     We build identities, campaigns, and visual systems for brands at every stage — from new ventures finding their voice to established companies ready to sharpen it. Our work is distinctive, consistent, and built to perform in the real world.
                 </p>
             </div>
             <div className="flex flex-row gap-[13vw] pr-[5vw] max-md:flex-col max-md:gap-4 max-md:pr-0">
-                <button className="lot-fade w-[40vw] h-[5.2vw] text-[1.2vw] max-md:w-[66vw] max-md:h-10 max-md:min-h-0 max-md:text-[3.2vw] pointer-events-auto overflow-hidden bg-[#181716] text-[#F0EEE6] 
+                <button className="lot-fade w-[40vw] h-[5.2vw] text-[1.2vw] max-md:w-[66vw] max-md:h-10 max-md:min-h-0 max-md:text-[3.2vw] md:max-lg:text-[1.8vw] pointer-events-auto overflow-hidden bg-[#181716] text-[#F0EEE6] 
                     transition-colors duration-700 before:absolute
                     before:inset-0 before:-z-10 before:origin-left before:scale-x-0 before:bg-[#FFBF00]
                     before:transition-transform before:duration-700 before:content-[''] hover:text-[#181716] 
                     hover:before:scale-x-100 min-h-17 flex items-center justify-center rounded-[111px] 
                     border-2 backdrop-blur-[3px] px-8 text-left">Start your project
                 </button>
-                <p className="lot-fade text-[3vw] max-md:text-[4vw] text-left" style={{ fontFamily: '"Azkia", sans-serif', lineHeight: 1}}>
+                <p className="lot-fade text-[3vw] max-md:text-[5.5vw] text-left" style={{ fontFamily: '"Azkia", sans-serif', lineHeight: 1}}>
                     From a single touchpoint to an entire brand system.
                 </p>
             </div>
