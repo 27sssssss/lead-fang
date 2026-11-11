@@ -2,6 +2,7 @@ import './App.css'
 import Header from './components/Header'
 import ClickSpark from './components/clickSparks/ClickSparks'
 import SmoothScroll from './components/SmoothScroll'
+import Preloader from './components/Preloader'
 import ContactPage from './pages/ContactPage'
 import MainPage from './pages/MainPage'
 import ServicesPage from './pages/ServicesPage'
@@ -10,6 +11,7 @@ import {Routes, Route} from 'react-router-dom'
 function App() {
   return (
     <>
+    <Preloader />
     <ClickSpark>
       <Header/>
       <SmoothScroll>

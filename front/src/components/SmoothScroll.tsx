@@ -18,7 +18,8 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
         content: '#smooth-content',
         smooth: 1,
         effects: true,
-        smoothTouch: 0.1,
+        // на тач-устройствах (телефоны, планшеты) — нативный скролл без сглаживания
+        smoothTouch: false,
       })
       smootherRef.current = smoother
       return () => {

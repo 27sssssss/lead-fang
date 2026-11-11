@@ -24,7 +24,7 @@ export default function LottieAnimation() {
   return (
     <div
       ref={containerRef}
-      className="w-[50%] -m-10"
+      className="w-[50%] -m-10 max-md:w-[30%] max-md:-m-4"
     />
   );
 }

@@ -48,12 +48,12 @@ export default function QasAccordion () {
 
     return (
         <section className="pt-5">
-            <p className="text-[4vw] text-[#FFBF00] -rotate-3 stroke-text2 relative left-[3%] text-left" style={{ fontFamily: '"Azkia", sans-serif', lineHeight: 1 }}>
+            <p className="text-[4vw] text-[#FFBF00] max-md:text-[7vw] -rotate-3 stroke-text2 relative left-[3%] text-left" style={{ fontFamily: '"Azkia", sans-serif', lineHeight: 1 }}>
                 The manifesto
             </p>
-            <div className="border-[0.27vw] border-[#F0EEE6] pt-[3.5vw] pb-[1.5vw] pl-[1.5vw] grid grid-cols-[33%_67.5%]">
+            <div className="border-[0.27vw] border-[#F0EEE6] pt-[3.5vw] pb-[1.5vw] pl-[1.5vw] grid grid-cols-[33%_67.5%] max-md:grid-cols-1 max-md:px-[5vw] max-md:pt-6 max-md:pb-2 max-md:gap-4">
                 <div className=''>
-                    <p className="text-[clamp(3.5rem,8vw,9.5vw)] text-left uppercase" style={{ fontFamily: '"DRUKCYR", sans-serif', lineHeight: 0.91 }}>
+                    <p className="text-[clamp(3.5rem,8vw,9.5vw)] max-md:text-[14.5vw] text-left uppercase" style={{ fontFamily: '"DRUKCYR", sans-serif', lineHeight: 0.91 }}>
                         THE RULES OF ENGAGEMENT FOR BUILDING DOMINANT BRANDS.
                     </p>
                 </div>
@@ -64,13 +64,13 @@ export default function QasAccordion () {
                         const answerId = `manifesto-answer-${index}`
 
                         return (
-                            <li key={faq.question} className='outline-blocknew p-5 flex py-10 flex-row items-start gap-8'>
-                                <p className={`font-extralight uppercase transition-colors duration-500 ${isOpen ? 'text-[#FFBF00]' : ''}`}>Q{index}</p>
+                            <li key={faq.question} className='outline-blocknew p-5 flex py-10 flex-row items-start gap-8 max-md:px-0 max-md:py-6 max-md:gap-2'>
+                                <p className={`font-extralight uppercase max-md:hidden transition-colors duration-500 ${isOpen ? 'text-[#FFBF00]' : ''}`}>Q{index}</p>
                                 <div className="w-full">
                                     <button
                                         type="button"
                                         id={`manifesto-question-${index}`}
-                                        className="group flex w-full items-center justify-between gap-5  text-left text-[clamp(1rem,1.5vw,1.5rem)] uppercase"
+                                        className="group flex w-full items-center justify-between gap-5  text-left text-[clamp(1rem,1.5vw,1.5rem)] uppercase max-md:normal-case max-md:text-[4.6vw]"
                                         aria-expanded={isOpen}
                                         aria-controls={answerId}
                                         onClick={() => setSelected(isOpen ? null : index)}
@@ -101,7 +101,7 @@ export default function QasAccordion () {
                                         }`}
                                     >
                                         <div className="min-h-0 overflow-hidden">
-                                            <ul className="space-y-3 pt-6 pr-8 text-[clamp(0.9rem,1.1vw,1.125rem)] leading-relaxed">
+                                            <ul className="space-y-3 pt-6 pr-8 max-md:pt-3 max-md:pr-10 text-[clamp(0.9rem,1.1vw,1.125rem)] max-md:text-[2.8vw] leading-relaxed">
                                                 {faq.answers.map((answer, answerIndex) => (
                                                     <li
                                                         key={answer}
