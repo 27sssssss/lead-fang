@@ -51,7 +51,7 @@ export default function QasAccordion () {
             <p className="text-[4vw] text-[#FFBF00] max-md:text-[7vw] -rotate-3 stroke-text2 relative left-[3%] text-left" style={{ fontFamily: '"Azkia", sans-serif', lineHeight: 1 }}>
                 The manifesto
             </p>
-            <div className="border-[0.27vw] border-[#F0EEE6] pt-[3.5vw] pb-[1.5vw] pl-[1.5vw] grid grid-cols-[33%_67.5%] max-md:grid-cols-1 max-md:px-[5vw] max-md:pt-6 max-md:pb-2 max-md:gap-4">
+            <div className="border-[0.27vw] border-[#F0EEE6] pt-[3.5vw] pb-[1.5vw] pl-[1.5vw] grid grid-cols-[33%_67.5%] max-md:grid-cols-1 max-md:px-[5vw] max-md:pt-6 max-md:pb-6 max-md:gap-4">
                 <div className=''>
                     <p className="text-[clamp(3.5rem,8vw,9.5vw)] max-md:text-[14.5vw] text-left uppercase" style={{ fontFamily: '"DRUKCYR", sans-serif', lineHeight: 0.91 }}>
                         THE RULES OF ENGAGEMENT FOR BUILDING DOMINANT BRANDS.

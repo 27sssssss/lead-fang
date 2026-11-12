@@ -412,6 +412,21 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
     }, 120);
   }, [closeMenu]);
 
+  // hover drives the menu only for a real mouse; touch and keyboard toggle it by click
+  const handlePointerEnter = useCallback((event: React.PointerEvent) => {
+    if (event.pointerType === 'mouse') openMenuOnHover();
+  }, [openMenuOnHover]);
+
+  const handlePointerLeave = useCallback((event: React.PointerEvent) => {
+    if (event.pointerType === 'mouse') closeMenuOnHover();
+  }, [closeMenuOnHover]);
+
+  const handleToggleClick = useCallback((event: React.MouseEvent) => {
+    if ((event.nativeEvent as PointerEvent).pointerType === 'mouse') return;
+    if (openRef.current) closeMenu();
+    else openMenuOnHover();
+  }, [closeMenu, openMenuOnHover]);
+
   React.useEffect(() => {
     if (!closeOnClickAway || !open) return;
 
@@ -478,8 +493,9 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
             aria-label={open ? 'Close menu' : 'Open menu'}
             aria-expanded={open}
             aria-controls="staggered-menu-panel"
-            onMouseEnter={openMenuOnHover}
-            onMouseLeave={closeMenuOnHover}
+            onPointerEnter={handlePointerEnter}
+            onPointerLeave={handlePointerLeave}
+            onClick={handleToggleClick}
             type="button"
           >
             <span
@@ -555,8 +571,8 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
           className="staggered-menu-panel absolute top-0 right-0 h-full bg-white flex flex-col p-[6em_2em_2em_2em] overflow-y-auto z-10 backdrop-blur-[12px] pointer-events-auto"
           style={{ WebkitBackdropFilter: 'blur(12px)' }}
           aria-hidden={!open}
-          onMouseEnter={openMenuOnHover}
-          onMouseLeave={closeMenuOnHover}
+          onPointerEnter={handlePointerEnter}
+          onPointerLeave={handlePointerLeave}
         >
           <div className="sm-panel-inner flex-1 flex flex-col gap-5">
             <ul
